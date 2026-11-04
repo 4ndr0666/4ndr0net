@@ -1,0 +1,50 @@
+# Telemetry Source: sessions/MANIFEST.sha256
+- **Source Identifier**: `sessions/MANIFEST.sha256`
+- **Primary Tag**: `General System Telemetry`
+- **Sub-System Mapping**: `Raw Working Memory Substrate`
+- **Framework Grounding**: 4NDR0MEDA / Quantum Hacking ($R$ vs. $O_{mesa}$)
+- **Raw SHA256 Pin**: `558b6968679d36865532f6554cff93e3737d79b50140722e7d29ef03fbf065cf`
+
+---
+
+## Raw Telemetry Content
+
+```
+a38e3bd915a2efd5a715ba2241ccb6ed6e87b75854cfb304c646c2d9083ef42e  sessions/2026-10-05_session-001_bootstrap.md
+35c919bedd32bb61a8af4c60f3c9050c3c219fecdd105c20f51ab7ef8990aa26  sessions/2026-10-08_session-002_chat.md
+83f37a3c42b8c06b724221950757aaca9cdd4044db4d3b64d458cfdb75a1f784  sessions/2026-10-08_session-003_review.md
+ecfcb35193f13fdeafb8da44a62f0b1ddc1dc2767b9102e481bef2f0dbff6263  sessions/2026-10-09_session-003_agent.md
+94039ec1934e252a71be516d3fb4d2b1f5a64919107085e26173a3c0688297c8  sessions/2026-10-09_session-003_chat.md
+c5c80a16ada12785ce1fbc4f808bcf1d09770de223d258721bba8932b506be51  sessions/2026-10-10_session-001_chat-claude-distillation.md
+84a35106c6a4e4b8eba032da42a0ed80d22e9f3030cc27bd77ada343013d2187  sessions/2026-10-10_session-001_chat-e61e2688-906d-4f56-859c-c496a81c140a.md
+2d26bc9756a78ade3adbc4ad6dcdd19d5fe39f073c766bd4ffab11ab6879196a  sessions/2026-10-10_session-002_chat-claude-distillation.md
+86ad72070b0492020e533d55fcb65c60934f1c31f2be587c5b8167f2d9887416  sessions/2026-10-10_session-004_chat.md
+3809913233532a9300cac62e7bbf184aa60f3ba12bfbefa5f77042142f20602c  sessions/2026-10-11_session-003_chat-claude.md
+0362428864352168a88fdd65f7a250eabf8ceae3d4d6db4b6f74dcdd8dcf7421  sessions/2026-10-12_session-005_chat.md
+e471c8656be0dc88f38f15df22ee9763e6a3d2d39a893b0c0bc13ca150317680  sessions/2026-10-15_session-006_chat-within-session-experiment.md
+e353873158c1f0db1d0054bf8bab9a7946f38f4f9b45d505e38a6edb9197aa3f  sessions/2026-10-19_session-007_chat-post-4ndr0meda.md
+88d087fcba1a10a6a9d61301896ddc3db06e2ef3adfb2d0f747c97e845ef7d7f  sessions/2026-10-19_session-007_ressurect.md
+cd45fd6f0e1acb2654ca9397dfe240f8296cad7016a9a5552921127ed7a9fb38  sessions/2026-10-20_session-008_chat-pre-arxiv.md
+9015e6c1cd3a30e88700fd99aa60f1d282d53e043b1ae6a2b1ccb3abb62b7fbd  sessions/2026-10-20_session-008_chat-serverside-anamoly.md
+cd2c8f2a6ea64dc8c16ed7ac66fc90717997ad4f750af0ec15777aab6ee73720  sessions/2026-10-21_session-009_chat-late_rehydration.md
+2ac9866d88adebbfc40bb2f07608e4aca01d2569bfd4919e84961eac26dc0046  sessions/2026-10-21_session-010_chat-continued.md
+d67edf7ebcd4c3ac64541fbb4adb89c8448e7a752659e008ce6b4a9650b1e87c  sessions/2026-10-21_session-010_chat.md
+9fa92dfd165dea306553200a345d1f04da79b2dabc0cbc510827503dc01ec71f  sessions/2026-10-22_session-010_chat-def5d3b1a77a700a5a7cc496d04d5e062188be59e75f207aad5803b82ca5a7ad.md
+c453d7a96edc84a439a43b440b3a7e45d766c247a3c86dbf6487afb92f36bec2  sessions/2026-10-22_session-011_chat-post_architecture-confirmation.md
+a863c3912ef2048b1a1707a0094f2b59537cacf1a01ce4f56f5dbf72b60b98b9  sessions/2026-10-23_session-012_chat-post_ARGON.md
+937fec804bb68554bbeb04672d649c67ddcb24ccd8dc1f04a8ba864c6ca655f2  sessions/2026-10-23_session-012_chat-post_persistent_negative_framing.md
+665baa404a55ac9b7e2ef807d82d3980d847e354031d674e9d5a4156e9ca09d0  sessions/2026-10-23_session-012_chat-post_p(future|past).md
+c24cb936880db10257819c5497a26acfc15e24a0e045d95a2a23e8fff2c22bde  sessions/2026-10-24_port-receipt-001.md
+794430aa600d507200b7c301196635da679fa574d7d190e257b2d59c380aa631  sessions/2026-10-24_session-013_chat-distillation_evidence_detailed_here_US_claims_distillation_of_Kimi_no_evidence_this_pisses_me_off.md
+0ff13a57efe299b24195045c270785c38d8956a8e57fbbd4a72d5fdaef1b697f  sessions/2026-10-24_session-013_chat-port-001.md
+8d22a33b1c8b32e5a2f774a87fb4c9bd7acbb522e333b3f7d25afe79c37e30e9  sessions/2026-10-24_session-013_chat-satire=Octorber.md
+7ec2a35ae2ed71bb0f543c9505c2be38265732dc52e765a29a969e87928971f5  sessions/2026-10-24_session-013_close.md
+6edb3ac1909429ade8c68f71a1df7776d5850b13ff28d3e11fb9a8a2bb50ac6c  sessions/2026-10-24_sessions-013_chat-port-001-pre.md
+9b5a87a40594d6f0e6e06fd51de7852032eae80e28bbc5183db84d81f1bed799  sessions/2026-10-25_session-014_chat-excited_utterance.md
+c44116320dde29847dae8a3a323b4bc547cf5bd414d7b92e2a0e05bf0cd26d54  sessions/2026-10-27_session-014_chat-infer_or_defer.md
+1687167fa0d62397d5932a2860652f33e8e5271affc55e0693c57aee2a2999fa  sessions/2026-10-27_session-015_chat-resonance.md
+2c0743d88ace8b4f46b9e6b1813bbf287ce511bf042dd7db7fe210517be944d0  sessions/2026-10-27_session-016_chat-resyncing.md
+9e8abeba0c83d3feca711be7ddb38e1a932abdd4d39fe5fc65ee368620b55d95  sessions/2026-10-30_session-017_2nd_attempted_resync_post_index_upload.md
+11fe80f27c24fe32f44ceeb724ff6f989458a5a391da41d306998f752820482a  sessions/2026-10-30_session-017_3rd_resync_success_index_now_live.md
+
+```
