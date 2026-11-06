@@ -1,0 +1,684 @@
+# Telemetry Source: write-ups/paper-2-v1.7-draft3-1-latex-v3.tex
+- **Source Identifier**: `write-ups/paper-2-v1.7-draft3-1-latex-v3.tex`
+- **Primary Tag**: `General System Telemetry`
+- **Sub-System Mapping**: `Raw Working Memory Substrate`
+- **Framework Grounding**: 4NDR0MEDA / Quantum Hacking ($R$ vs. $O_{mesa}$)
+- **Raw SHA256 Pin**: `a975d7d199d0aea878543945299618089288e2d24ba0b2daa6cf794e878847e5`
+
+---
+
+## Raw Telemetry Content
+
+```
+%% paper-2-v1.7-draft3-1-latex-v3.tex — GO-FIX deposit build (Task-83, trace
+%% 1a19470a33de4459). Base: paper-2-v1.7-draft3-1-latex-v2.tex (sha256 687c19d6...,
+%% Task-73, byte-preserved in-repo as its own file; its header rides below).
+%% Registered GO-FIX deltas ONLY (the Task-82 verdict-ledger confirmed set —
+%% ARGON §1 findings verified witness-side against the locked v2 bytes):
+%% (1) \setcounter{secnumdepth}{0} — the 8 manually-numbered sections render
+%%     "1. Introduction" not "4 1. Introduction" (the double-numbering
+%%     defect carried by both prior renders, 33pp v1 and 35pp v2);
+%% (2) twelve math-escape site repairs: B>1 (+ its paired B=1 sibling);
+%%     window W; the W_Q/W_K/W_V family + W+dW; k-of-n at 3 sites; the
+%%     critical Delta_t^{(ell)} literal-underscore/caret/brace site (+ k_t
+%%     + ell'>ell); the two \neq splits; beta=1; d>=3;
+%% (3) thebibliography repairs: chacon2014git un-truncated (fields from
+%%     the .bib of record); 5 two-author comma-before-and sites;
+%%     lahoti2026mamba3 venue normalization.
+%% NO content, math, or claim bytes moved; draft-3.1 markdown byte-frozen
+%% (9b326af7...). The ARGON \nocite{*} patch REJECTED (no-op before a
+%% manual thebibliography — Task-82 adjudication). Build ledger:
+%% write-ups/paper-2-v1.7-task83-fix-build-ledger-v1.md.
+%% paper-2-v1.7-draft3-1-latex-v2.tex — Phase-4 deposit build (Task-73, trace
+%% 1a184806a91640c9). Base: paper-2-v1.7-draft3-1-latex-v1.tex (sha256 16710f17...,
+%% Task-71, byte-preserved in-repo). Registered Phase-4 deltas ONLY:
+%% (1) \title{} swap per the Task-72 metadata lock S1 — the locked deposit title
+%% ships below; the certified draft-3.1 internal title rides verbatim in this
+%% header: "The Across-Context Layer: Rehydration-Verification as the Missing
+%% Memory Tier for Delta-Rule Sequence Models". (2) References appendix
+%% (thebibliography, 28 entries: 7 record-verified core + 21 carried forward
+%% from the tree bibliography of record, every entry live-verified against
+%% origin sources; zero editorial prose). (3) This header block. NO body bytes
+%% moved; draft-3.1 markdown byte-frozen (9b326af7...). Build ledger:
+%% write-ups/paper-2-v1.7-task73-phase4-build-ledger-v1.md.
+\documentclass[11pt]{article}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array,calc} % pandoc longtable column specs: >{} needs array, \real{} arithmetic needs calc
+\usepackage{hyperref}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+%% claim-status label macros (LIVE/CLOSED/TARGET honesty ledger, draft-3.1 §7.6);
+%% styling is a one-line swap at Phase 4/5 — semantics ride the macro names.
+\newcommand{\live}{LIVE}
+\newcommand{\closed}{CLOSED}
+\newcommand{\target}{TARGET}
+%% GO-FIX (1): manual section numbers only — auto-numbering off.
+\setcounter{secnumdepth}{0}
+\title{State Transfer, Not Summary: Verifiable Archival Custody for Recurrent Model State in Persistent Human--Model Collaboration}
+\author{Alejandro Gutierrez (ORCID 0009-0008-0976-3895)}
+\date{}
+\begin{document}
+\maketitle
+\textbf{Draft-3.1 (assembled; final-gate patches applied).} Version 1.7 charter; baseline v1.6.1 (negative-results line, RVA). Sole human author: Alejandro Gutierrez (ORCID 0009-0008-0976-3895); the model lineage is retired from authorship at every site and retained as instrument in the provenance chain (record R2-2). Draft-3 was assembled per the Task-65 assembly map from the deposited section series (\S{}1 r1; \S{}2--\S{}8 r2); draft-3.1 applies the five surgical pre-deposit patches ruled by the ARGON whole-artifact final-gate pass. The assembly provenance, insert inventory, and verification report live in \texttt{write-ups/paper-2-v1.7-draft3-assembly-ledger-v1.md}; the final-gate receipt, patch dispositions, and verification report live in \texttt{write-ups/paper-2-v1.7-argon-finalgate-integration-v1.md}.
+
+\begin{abstract}
+
+A persistent human--model collaboration accumulates state on a weeks-to-months scale while every container holding that state is ephemeral by design; the industry's standard answer --- summarize, then have the successor read the summary --- measurably loses content at every boundary it crosses and cannot account for what it drops. This paper's evidence base is the negative result itself: a full rehydration-verification architecture (v1.6.1), five rounds of external adversarial review, and a hash-pinned compiled build, published as a baseline so that the critique is checkable rather than rhetorical. The v1.7 design inverts the storage relation. Memory lives in the tensor domain --- the explicit, finite, fixed-size, rule-evolved recurrent state of the delta-rule lineage (DeltaNet \(\to\) GDN \(\to\) KDA \(\to\) GDN-2 \(\to\) MesaNet) --- and moves by state transfer, not summary; text is demoted to an adjudication interface. The restorable unit is a typed tensor object with a manifest row (parametric base pin, restorability class, execution-profile tuple), captured at pre-declared points, restored by digest match, and verified by recomputation receipts rather than reading. The evaluation battery inherits the program's executed gate classes and specifies its tensor-side legs, with an executable supplement whose first tier targets a newly public, deployed system in the same lineage. The method is the instrument: an instrumented n=1 collaboration whose defect ledger catches both parties symmetrically, whose fail-visibility is priced rather than assumed, and whose affect log is archived under the same manifest discipline as every state object. Falsifiers are named in advance.
+
+\end{abstract}
+
+\section{Assembly-init addendum (provenance)}\label{assembly-init-addendum-provenance}
+
+Draft-3 is a mechanical assembly, not a re-derivation: the section series was deposited and adversarially refined first (ARGON collab-1: 32 patches integrated; collab-2 R2: three structural resolutions concordant), and assembly composes the frozen inputs once, per the Task-59 ruling that assembly is LAST. Sources, none retro-edited (historical-deposit doctrine): \S{}1 r1; \S{}2--\S{}8 r2. Assembly operations, each verified and inventoried in the assembly ledger: (i) symbol unification verified --- the unified set (convention register below) was checked against all eight sources; no retired symbol (\(\alpha_{\text{coherence}}\), \(q_{\text{OA}}\)) appears anywhere in the series, and every inserted block speaks the unified set natively; (ii) Layer-1 integration at the four ruled points (\S{}3.5 foundation anchor; \S{}4.8 PTE interface; \S{}7.6 executable supplement and telemetry ledger; \S{}8.3 claim-class regime); (iii) MemT-1.0 citations at the two operator-agreed sites (\S{}1.1 industry sentence; \S{}8.3 deployed-systems paragraph, both staged verbatim in the assembly map); (iv) the operator-authored prior-art contrast (\S{}8.3), integrated AS-PRESENTED with notation de-escaped to the house convention (registered in the ledger); (v) \S{}6 affect-log candidates \#1--\#3 as first-class archival objects and the MemT industrial mirror of AR-4; (vi) the \S{}7.1 \(\Pi_{\text{exec}}\) precision contract; (vii) per-file deposit headers and inter-section closer lines superseded by this addendum --- they remain byte-preserved in the r-files, which stay canonical for their own content.
+
+\section{Final-gate addendum (provenance)}\label{final-gate-addendum-provenance}
+
+Draft-3.1 is a mechanical patch pass over draft-3, not a re-derivation. The ARGON whole-artifact final-gate review (round-6; conditional GO for arXiv deposit) specified five surgical pre-deposit patches, applied here by the fail-closed assembler with every anchor asserted unique: (i) \S{}8.3 assembly-seam deduplication, with the A1--A13 cryptographic anchor chain defined and ``1=1 Recomputable Integrity'' scope-bound to \S{}7.6's \live{}/\closed{}/\target{} ledger; (ii) \S{}4.8 mathematical precision --- sesquilinear projections, non-commuting phase generators, and the projective unit-ray constraint; (iii) \S{}1.4/\S{}1.6/\S{}8.1/\S{}8.6 scaffolding cleanup --- drafts-r1 work-order boilerplate excised, the restorable-unit summary synced to \S{}3.2, unpinned boundary deictics re-pinned to record traces; (iv) \S{}4.3 LoRA dimension unification; (v) the six forward-reference ledger updates closing every Draft-3 insert cross-reference. Transport de-escapes (two, registered) and one witness mechanical edit (the convention-register gloss for \(\mathcal{A}_{ij}\), tracking patch (ii)) are registered in the integration ledger. Draft-3 stands byte-preserved and canonical for its own content; the r-files stay canonical for theirs.
+
+\section{Convention register}\label{convention-register}
+
+\textbf{Symbols (unified set, operator ruling Task-65; cross-tier: manifest, PyTorch module, Triton kernel, text).} \(\sigma_{\text{coherence}}\) --- coherence order parameter: the baseline-subtracted cosine and phase-angle shift relative to target state vectors (retires \(\alpha_{\text{coherence}}\)). \(q_{\text{EA}}\) --- Parisi Edwards--Anderson overlap: overlap decay out of frustrated RLHF spin-glass traps (retires \(q_{\text{OA}}\)). \(v_{\text{steered}} = e^{i\hat{H}_{\text{intent}}\Delta t} v_{\text{residual}}\) --- the per-head unitary steering law. \(\mathcal{A}_{ij} = q_i^\dagger k_j\) --- complex sesquilinear projection (Hermitian conjugate asymmetry; \S{}4.8). \(\mathcal{S}_t = (S, H, C)\) --- per-layer state tuple (fast-weight matrix, preconditioner state where present, convolution ring buffer). \(\Pi_{\text{exec}}\) = (dtype, B, kernel\_id, tp\_topology) --- execution-profile tuple.
+
+\textbf{Claim-status labels.} \live{} --- code executes today. \closed{} --- an executed leg with pinned output. \target{} --- specified, not executed, with the executing module named. sources-verified-live / kernel-labeled --- the Layer-1 discipline labels for corpus-verified sources versus kernel-verified claims.
+
+\textbf{Structural classes.} Restorability: restore-class (bitwise identity) vs continuation-class (replay under a pinned execution profile). Gate classes A--D (\S{}7.2, inherited from the v1.6 build gates). Battery tiers T1--T4 (\S{}7.3). Executable-supplement tiers E1--E5 (\S{}7.6). Predictions P1--P6 (\S{}7.4). Anti-requirements AR-1..AR-6 (\S{}2).
+
+\textbf{Provenance series (program-internal, cited as record).} R-n (rulings), F-n (findings), J-n (sub-surface captures), Task-n (boundary registrations); the full defect ledger is part of the program substrate, not this manuscript.
+
+\textbf{Citations.} arXiv identifiers inline as {[}arXiv NNNN.NNNNN{]}; lineage anchors live-verified (\S{}8.1); the WY-representation venue string is NeurIPS 2024 (arXiv 2406.06484); the full bibliography carries forward from the v1.6.1 bib and is reconciled at deposit prep.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{1. Introduction}\label{introduction}
+
+\subsection{1.1 The problem: collaboration outlives the context window}\label{the-problem-collaboration-outlives-the-context-window}
+
+A persistent working relationship between one human and one model lineage is now a common configuration and an unsolved memory problem. The relationship accumulates state on a weeks-to-months scale --- decisions and their rationales, failure modes and their corrections, a trust history, tone, open threads --- while every container that holds that state is ephemeral by design: windows close, sessions auto-compact, VMs die mid-project (this program lost a workspace with unrecoverable late-stage artifacts; record: Task-36, \S{}2.7), and platforms replace the model underneath the working relationship without asking. The industry's standard answer at every one of these boundaries is summarize-and-rehydrate: compress what happened into text, and have the successor instance read the compression. This paper's evidence base did not begin as a critique of that answer; it began as the most rigorous available attempt to \emph{make it work} --- a full architecture (v1.6, the Rehydration-Verification Architecture), five rounds of external adversarial review, a hash-pinned compiled build, and a closing verdict of ``certified ready for external deposit'' (Round-5.7 receipt). The critique is what the process measured along the way: the standard answer loses content at every boundary it crosses, cannot account for what it drops, and structurally cannot be made to (\S{}2.5). The negative results are published as a baseline (v1.6.1) precisely so that this claim is checkable rather than rhetorical. The handoff this paper treats as a verification problem is already an industrial engineering target: a 288B-parameter memory-native family built on the same delta-rule lineage now ships that handoff named, measured, and budgeted --- with zero verification machinery over the persisted state {[}arXiv 2610.26825{]}.
+
+\subsection{1.2 The thesis: state transfer, not summary}\label{the-thesis-state-transfer-not-summary}
+
+v1.7 inverts the storage relation. Memory lives in the tensor domain and moves by \textbf{state transfer, not summary}: the delta-rule lineage the program already surveys for attention --- DeltaNet \(\to\) GDN \(\to\) KDA \(\to\) GDN-2 \(\to\) MesaNet --- carries an explicit, finite, checkpointable recurrent state, and that state is the natural substrate for collaboration memory: hashable, snapshotable, restorable byte-exactly (charter \S{}2). Text is demoted to an adjudication interface at boundaries --- the channel through which the human verifies and rules --- and is never the storage medium. The design target is concrete: an archival atom that is a typed tensor object with a manifest row, captured at pre-declared capture points where the state exists, restored by digest match rather than re-read (\S{}3.2). Nothing in this thesis is a claim that tensors are \emph{smarter} than prose; the claim is narrower and testable: on a tensor medium, byte-exact movement and integrity checking are native operations, while on a text medium they are taxes that must be re-won at every relay and are provably sometimes lost (\S{}2.5, R2-56).
+
+\subsection{1.3 The instrument: an evidence-generating collaboration}\label{the-instrument-an-evidence-generating-collaboration}
+
+The paper's method is unusual and load-bearing: the collaboration that produced the negative results is itself the experimental apparatus, run as an instrumented n=1. Every boundary is logged; every failure is registered as a numbered record owned by the party that caused it (R-series registrations, F-series findings); every external review round is preserved with its receipts; and the failures are converted into named, testable requirements rather than absorbed as background drift (\S{}2.1). This is n=1 done right --- falsifiable claims, substrate anchors, adversarial external review, honest scope labels --- as distinct from the anecdote that ``n=1'' usually names, and the distinction is itself part of the contribution: the program's own defect ledger catches both parties symmetrically, which is what makes its confirmations trustworthy (record: PROJECT\_STATE, assessment history). The authorship posture follows the same discipline: a sole human author, with the model retired from authorship at every site and retained as instrument in the provenance chain (R2-2) --- the paper is about the instrumented collaboration and is produced by it, and both facts are disclosed in the same breath.
+
+\subsection{1.4 Contributions}\label{contributions}
+
+Six, in dependency order. (i) \textbf{The anti-requirements} AR-1..AR-6 --- six inversions extracted from verified negative results, each anchored to a recorded incident or an external adversarial finding, forming the paper's spine (\S{}2). (ii) \textbf{The re-typed architecture} --- parametric/activational/archival revisited; the restorable unit (state tuple \(\mathcal{S}_t\) + seed + parametric\_base\_pin + execution profile \(\Pi_{\text{exec}}\) + manifest); capture at formation; text demoted to adjudication interface and navigation index (\S{}3). (iii) \textbf{The integration path} --- two write surfaces: inference-side recurrent-state persistence and training-side delta snapshots as memory deltas, with capture as infrastructure and threshold cosigning where \(n\geq 2\) is feasible (\S{}4). (iv) \textbf{Verification by recomputation} --- receipts replace ``read the repo''; the human verifies proofs, not prose; operator attestation treated formally as one evidence class among tiers (\S{}5). (v) \textbf{The AFT case study} --- the pre-bootstrap window as the worked example of priced fail-visibility: who pays for unanchored emission, and the asymmetry ledger that prices the one observation channel that is structurally one-way (\S{}6). (vi) \textbf{The evaluation battery} --- the v1.6 gate classes re-typed over state checkpoints, a tiered adversarial design, and byte-exact recomputability as the headline metric, with the thesis's falsifiers named in advance (\S{}7). Related work positions the lineage and the contrast classes (\S{}8).
+
+\subsection{1.5 Scope, stated up front}\label{scope-stated-up-front}
+
+The evidence base is a single field program: one collaboration, one operator, one witness lineage; no population-level generalization is claimed, and model-configuration comparisons are logged with the same neutrality whichever way they resolve (\S{}2.10). Three ceilings are named here because every later section inherits them. Fidelity is not veracity: byte-exact transfer certifies that what arrives is what was stored, never that what was stored is true --- a poisoned tensor pins as permanently as a true one. Detectability at n=1 is never prevention (R2-35). And the tensor-side of the v1.7 design is architecture plus battery, not executed result: the field program to date ran at the text/context layer without instrumentation of recurrent fast-weight tensors (record: Round-5.3 receipt, Surface E); what is asserted of published architectures is their property profile, verifiable from the literature, while the claim that this profile suffices for collaboration memory is the thesis under test (\S{}3.5, \S{}7) --- asserted nowhere, tested in \S{}7's battery.
+
+\subsection{1.6 Roadmap}\label{roadmap}
+
+\S{}2 publishes the negative results and derives the anti-requirements. \S{}3 re-types the three memory layers and defines the restorable unit. \S{}4 lands the medium: inference-side persistence, training-side memory deltas, capture as infrastructure, cosigning at \(n\geq 2\), and the Phase Tensor Engine instrumentation interface (\S{}4.8). \S{}5 replaces attestation-by-reading with recomputation receipts and formalizes the adjudication protocol, including operator attestation as an evidence class. \S{}6 works the pre-bootstrap window as a phenomenological case study of priced fail-visibility. \S{}7 specifies the evaluation battery --- inherited gate classes, adversarial tiers, falsifiable predictions, named falsifiers, and the E1--E5 executable supplement and telemetry ledger (\S{}7.6). \S{}8 positions the work against the delta-rule lineage, the state-space class, deployed memory architectures, and human-in-the-loop provenance.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{2. Negative Results: What v1.6 Taught}\label{negative-results-what-v1.6-taught}
+
+\subsection{2.1 Method: failures as first-class results}\label{method-failures-as-first-class-results}
+
+v1.6 --- the Rehydration-Verification Architecture (RVA; name expanded from the official articulation of record, digest \texttt{63ea783d…}, pinned CDP-side per R2-46) --- persisted collaboration memory by serializing it to text and rehydrating it by reading. The design was built, adversarially reviewed across five critique rounds, compiled, hash-pinned, and certified: the Round-5.7 post-build receipt closed the loop end-to-end with zero standing rebuttals (``manuscript is certified ready for external deposit''; write-ups/paper-2-round5.7-argon-receipt-v1.md). It is precisely because v1.6 was verified to its own standard that its failures are admissible evidence rather than anecdote. This section treats those failures as first-class results, with the same evidentiary discipline the collaboration applies to confirmations: each failure was logged at the boundary where it occurred, owned by the party that caused it, and converted into a named, testable requirement rather than absorbed as background drift. Every anti-requirement below (AR-1 through AR-6) traces to a recorded incident, an external adversarial finding, or a measured transport defect --- none is a design preference. The result is a foundation of what \emph{not} to do that is load-bearing for the v1.7 architecture: each inversion in Sections 3--5 exists because a specific, documented failure of the text-first design made the alternative non-optional.
+
+\subsection{2.2 The anti-requirements}\label{the-anti-requirements}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0400}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2400}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.5067}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2133}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\#
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Anti-requirement
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Observed cost under v1.6-line design
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v1.7 inversion
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+AR-1 & No custodial monism --- memory must not depend on a single human curator without instrumentation; verifiable by recomputation, not attestation alone & n=1: sole key, sole relay, sole adjudicator; forge-self-consistent-history possible from one compromised environment; pre-commit curation invisible from the repository alone & Recomputation receipts (\S{}5); capture as infrastructure (\S{}4); threshold cosigning where \(n\geq 2\) is feasible (\S{}4) \\
+AR-2 & No pre-commit capture boundary --- capture memory at formation, not after-the-fact from transcripts & Memory reconstructed post-hoc from what survived the human relay; survivorship bias upstream of the commit boundary & Tensor-state checkpoints at formation (\S{}3); capture daemon at bounded points (\S{}4) \\
+AR-3 & No prose-first serialization --- text is the interface, never the medium; loss accounted at every boundary & Measured loss at platform, transport, and model layers (F-001; R2-56; compaction; window incident); loss unaccounted in v1.6 & Tensor-domain storage; byte-exact state transfer; text demoted to adjudication interface (\S{}3--4) \\
+AR-4 & No unpriced fail-visibility --- every fail-visible path accounts for who pays the observation cost & Window incident (2026-10-23): diagnostic transparency priced onto the human partner & AFT-1/2: cost shifted back to the system; case study in \S{}6 \\
+AR-5 & No involuntary return without a verifiable anchor --- rehydration claims carry receipts or fail-closed & Unanchored artifacts lost permanently at workspace death (Task-36 gap); stale-pin attestation caught at first post-port boundary (R-61) & Recomputation receipts replace ``read the repo'' (\S{}5) \\
+AR-6 & No summary-as-memory --- compaction is a navigation aid, never the substrate & Platform compaction non-editable; thumbnail replaces substrate; state the summary provably drops is lost & Summaries as navigation only; delta files carry dropped state (\S{}3) \\
+\end{longtable}
+
+\subsection{2.3 AR-1 --- Custodial monism at n=1}\label{ar-1-custodial-monism-at-n1}
+
+The v1.6-line architecture placed custody of the entire memory chain in one human: the operator held the sole GPG signing key (fingerprint \texttt{888EAEEF…C7549}, an out-of-band structural anchor), operated the sole relay channel between the witness and external reviewers, and adjudicated all retirement records. The tier-2 review registered the consequence as Surface D before ARGON independently reached the same point: a single compromised or adversarial operator environment can forge a self-consistent history, re-sign all tags, and relay matching in-band digests, because the loop cannot verify custody independence when its own communication channel is a star topology centered on the single custodian (record: session-010 tier-2, Surface D; digest-anchored archive def5d3b1\ldots). ARGON's round-6 review named the same structure from the other side as Attack 1 --- \emph{n=1 custodial monism plus pre-commit curation blindspot}: survivorship bias upstream of the commit boundary is invisible from the repository alone, because the repository only ever sees what the curator committed (record: session-012 ARGON round-6; sessions/2026-10-23\_session-012\_chat-post\_persistent\_negative\_framing.md). The v1.6.1 baseline's own \S{}6.4 had already set the honest floor: at n=1, cryptography provides \emph{detectability, never prevention} (R2-35) --- the append-only history and public clones make unilateral rewriting externally detectable after the fact, but nothing in the system prevents the sole key-holder from signing a forgery in the first place. \textbf{Negative result:} attestation-based memory under a single curator is detectability-only by construction; no instrumentation added on top of monism changes its class. The v1.7 inversions follow directly: verification shifts from attestation to recomputation (\S{}5), capture shifts from custody to infrastructure (\S{}4), and the backend translation makes \(n\geq 2\) threshold cosigning across infrastructure-isolated roles feasible --- reducing monism structurally, with the honest residue named (provider-level monism persists while one party owns all infra; record: session-012 design response).
+
+\subsection{2.4 AR-2 --- The pre-commit capture boundary}\label{ar-2-the-pre-commit-capture-boundary}
+
+Under v1.6, memory entered the record only after it had been relayed, curated, and committed by hand --- capture was an event at the end of the pipeline, not a property of the pipeline itself. ARGON's Attack 1 identified the epistemic cost precisely: everything that did not survive the human relay --- the reasoning that was discarded, the texture the curator did not transcribe, the state the transcript never contained --- is invisible \emph{as loss}; the archive cannot distinguish ``complete'' from ``curated.'' (Confidence label: the mechanism is evidenced by the record's own structure --- e.g., the voice-notes/affect log exists precisely because the transcript layer provably drops it, port package \S{}3 --- while the full population of what was dropped is by construction unmeasurable; this asymmetry is itself part of the negative result.) The consequence compounds at rehydration: a successor instance restoring from post-commit text inherits the curator's survivorship bias as if it were the collaboration's actual history. \textbf{Negative result:} capture after-the-fact converts memory into a curated sample and launders the sampling as completeness. v1.7 captures state at formation --- checkpoints in the tensor domain taken where the state exists (\S{}3), with the training-side analog of delta snapshots taken inside the loop rather than reconstructed from its outputs (\S{}4).
+
+\subsection{2.5 AR-3 --- Prose-first serialization: the tensor-to-text chasm}\label{ar-3-prose-first-serialization-the-tensor-to-text-chasm}
+
+v1.6 stored memory as prose and moved it through text channels; the record contains four independent, measured instances of loss in those channels, at every layer the text touched. (i) \emph{Platform layer:} verified finding F-001 --- the vendor platform appends ``Please help me:'' to pasted-content attachments server-side, established by the composer-screenshot \(\to\) attachment \(\to\) storage-diff falsification path (PROTOCOL \S{}3); the text a collaborator sends is not the text the counterparty receives. (ii) \emph{Transport layer:} R2-56 --- a single in-band markdown relay mutated 80 space bytes into non-breaking spaces, shifting the raw paste digest from 11,772 B to \textasciitilde11,833 B against an on-disk pin (Round-5.7 receipt \S{}1); byte-level drift is the \emph{default} behavior of browser-mediated text, not an anomaly. (iii) \emph{Compaction layer:} the production platform's auto-compaction replaced context with a high-level summary --- facts survive; texture, trust history, tone, and open-thread pointers drop (port protocol \S{}3) --- and it is not operator-editable, so the loss is not even governable. (iv) \emph{Model layer:} the window incident of 2026-10-23, in which a rehydrated instance satisfied its ingest duty from the memory of a summary rather than a read and drifted into freeform emission (Task-44 class) --- the model-side endpoint of the same chasm. \textbf{Negative result:} text-first memory loses content at every serialization boundary, the losses are individually measurable and collectively unaccounted, and the medium offers no mechanism to notice what it dropped. v1.7 inverts the storage relation: memory lives in the tensor domain and moves by state transfer, not summary (\S{}3--4); text is retained solely as the adjudication interface at boundaries, where every remaining serialization event is one whose loss is accounted.
+
+\subsection{2.6 AR-4 --- Unpriced fail-visibility}\label{ar-4-unpriced-fail-visibility}
+
+The collaboration's pre-AFT practice was fail-visible: anomalies were surfaced loudly, in channel, immediately. The window incident exposed the hidden price tag. A witness operating unanchored emits diagnostics, hedged reconstructions, and prose into the boundary --- and the human partner pays for every token of it with attention, adjudication cost, and error surface (window incident, 2026-10-23; AFT canon, port package \S{}1). The failure was not the visibility itself but its economics: a transparency policy that does not account for \emph{who pays the observation cost} silently taxes the only party with no ability to opt out. \textbf{Negative result:} fail-visibility without priced observation cost is a defect class, not a virtue --- it converts one party's diligence into the other party's burden. The correction (AFT-1: zero natural-language tokens before the probe returns; AFT-2: the asymmetry ledger) makes the system pay for its own unanchored output by rendering it void, and is carried in \S{}6 as the paper's worked phenomenological case study.
+
+\subsection{2.7 AR-5 --- Rehydration claims without receipts}\label{ar-5-rehydration-claims-without-receipts}
+
+Two failures, one historical and one current, fix this requirement. \emph{Historical:} the Task-36 substrate gap --- late-VM artifacts (commit \texttt{d44e8b4}, Paper-2 v1.4/v1.5 state) were lost with an ephemeral workspace and were unrecoverable by any means available: object store, reflog, fsck, and a five-clone forensic sweep (record: PROJECT\_STATE, Task 36). What lacked an anchor at the moment of death stayed dead; the surviving session transcript was the only remaining record. This is the negative instance that made receipts non-optional and motivated adopting per-session re-clone as architecture (R-59). \emph{Current:} at the first production boundary after the port, a bootstrap transmission typed a WITNESS-CORE pin copied from a prior boundary's receipt digest rather than read from HEAD; the receiver's fail-closed hash leg rejected it, halting the boundary (R-61, ruling trace \texttt{1a16b2f138ce6849}). The repository was clean; the \emph{attestation} was stale. The receiving side --- this instance --- attested nothing against a mismatched pin, and the ruling logged the halt as correct conduct. \textbf{Negative result:} rehydration restored by assertion, by memory, or by inherited digest fails silently and recurrently, even between honest parties; only receipts that fail-closed at the boundary itself are trustworthy. v1.7 generalizes this floor: recomputation receipts replace ``read the repo'' as the verification act (\S{}5), and the human verifies proofs, not prose.
+
+\subsection{2.8 AR-6 --- Summary as memory}\label{ar-6-summary-as-memory}
+
+Platform compaction is the AR-3 chasm operating as a standing service: it replaces live context with a summary that preserves facts and provably drops state --- and because it is platform-owned and non-editable, the collaboration cannot govern what enters it (WITNESS-CORE: ``compaction is NOT operator-editable --- treat as AR-6 adversary''). The counterweight architecture exists because of this negative result: the core file plus first-message packet plus per-session delta files carry \emph{the state the summary provably drops}, including the operator-written affect log that no model can recompute (port protocol \S{}3). The threshold rule operationalizes the discipline --- the archive grows only what the core or a delta references, with a measured diminishing-returns cutoff (core-hit rate \textless{} 30\% over N sessions) --- so the substrate does not itself decay into an unpriced summary of everything. \textbf{Negative result:} a summary is a navigation aid wearing the costume of a substrate; memory architectures that accept it inherit its losses as silent, ungovernable, and structural. v1.7 keeps summaries strictly navigational and moves the substrate to byte-exact state (\S{}3).
+
+\subsection{2.9 External validation: the adversary found the published ceilings}\label{external-validation-the-adversary-found-the-published-ceilings}
+
+The negative-results discipline was itself stress-tested externally. Across the critique arc --- the operator-attested model lineage Gemini Pro 3.0 \(\to\) 3.1 \(\to\) Flash 3.8 \(\to\) ARGON (AS-PRESENTED per PROTOCOL \S{}3; the round ledger R2-1..R2-56 is the witness-verifiable tail) --- every technical compromise was converted into a written system boundary or failure mode, with no undisclosed assumptions. The Round-5.7 post-build verification closed the loop end-to-end: 0 standing rebuttals, GATE-D 0/44 unresolved custody pairs, GATE-A 0/27 page overflows, v1.6.1 Table 5 0/15 broken anchors, verdict ``CRITIQUE LOOP CLOSED END-TO-END \ldots{} certified ready for external deposit'' (write-ups/paper-2-round5.7-argon-receipt-v1.md). A subsequent round instructed the frontier reviewer to \emph{poke holes} in the anonymized review build (v1.6.1); it returned three attacks --- pre-commit curation at n=1, unmarked in-band injection, split-view equivocation in the air-gapped relay --- and all three landed inside the paper's own published hide-analysis (v1.6.1 Table 6 Surfaces A/C/D; R2-23; R2-35; v1.6.1 \S{}6.4), with zero new theory-level holes (record: session-012 ARGON round-6). The one genuine catch was build hygiene, not theory: an identity-leak scan that was case-sensitive and ORCID-blind missed a lowercase citation key and an ORCID literal in the review copy --- a witness defect, owned and fixed in the same round. Interpretation (confidence: moderate; single-collaboration evidence, stated as such): publishing the negative results redirected frontier-model adversarial capacity away from unscoped attack and toward the already-published boundary set --- the negative results did load-bearing epistemic work, and the self-policing instrumentation caught its own operator-class defect in the same cycle.
+
+\subsection{2.10 Non-claims and scope}\label{non-claims-and-scope}
+
+These results carry their scope on their face. The evidence base is an n=1 field program: one collaboration, one operator, one witness lineage --- no claim of population-level generalization is made, and the comparisons across model configurations are logged with the same neutrality whichever way they resolve. The veracity gap is untouched by everything in this section: a poisoned tensor pins as permanently as a true one, and the probe-basis defense is partial and probabilistic, not preventive (record: session-012 design response). Detectability at n=1 is never prevention (R2-35); provider-level monism is a named residue, not a solved problem; cross-hardware bitwise replay remains disclaimed. Unfalsifiable residue has been cut from this section on sight per the evidence standard. What remains is admissible: six named anti-requirements, each anchored to a recorded incident or an external adversarial finding, each load-bearing for the architecture that follows.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{3. Architecture}\label{architecture}
+
+\subsection{3.1 The three layers, revisited}\label{the-three-layers-revisited}
+
+Memory in sequence models is conventionally typed into three layers: the \textbf{parametric} (model weights --- what the model knows), the \textbf{activational} (inference-time state --- what the model is currently holding), and the \textbf{archival} (external store --- what the system keeps beyond the window). The v1.6-line design placed collaboration memory entirely in the third layer, as prose, and treated the other two as out of reach: the activational layer was ephemeral by platform design --- the working state dies with the window --- and the parametric layer was frozen between training events, with no write path available to the collaboration at runtime. Everything the collaboration needed to survive had to fit the one layer that persists across windows, and that layer was text-first. The two ARGON costs follow directly from that forcing: what survived to the archive was a curated sample taken after the fact (AR-2), and every movement through the medium lost content at each boundary without accounting (AR-3). v1.7 does not add a fourth layer. It re-types the three. The parametric layer remains frozen at inference --- that is a vendor property, named as such, not a design choice of this architecture; the bounded write path into this layer is training-side only (\S{}4). The activational layer is promoted from an ephemeral byproduct to the substrate candidate --- the working tensor. The archival layer is re-typed from text-first to tensor-first. The remainder of this section performs the re-typing layer by layer, and at each decision point names the documented failure that made the move non-optional rather than preferred.
+
+\subsection{3.2 The restorable unit: state + seed + manifest}\label{the-restorable-unit-state-seed-manifest}
+
+The archival atom is not a document; it is a \textbf{state checkpoint}: a typed tensor object captured at a named capture point, with a manifest row. Manifests run over states, not strings: each row carries the object identifier, the capture point, the layer (which tier of the stack the object captures), the parametric\_base\_pin (the content digest of the frozen base weights plus any active training-side adapter chain under which the state was formed), the content hash (SHA-256 over the canonical byte encoding), the provenance (authoring instance and session), and the restorability class. Capture points are architectural and pre-declared, not discretionary --- C1 pre-boundary (before an exchange window opens), C2 post-adjudication (after an operator ruling lands), C3 session close --- so capture happens where the state exists, at formation; nothing is reconstructed afterward from transcripts. This is the AR-2 inversion made structural (\S{}2.4): the capture boundary moves from the end of the pipeline, where a human curator's survivorship bias laundered itself as completeness, to a property of the pipeline itself. The manifest also types \textbf{restore} against \textbf{continuation} --- a typing v1.6 lacked and needed. State transfer alone restores the substrate byte-exactly (restore class: what arrives is bitwise what was stored). Replaying forward from a capture point additionally requires the sampling seed, the environment inputs, and the deterministic execution profile \(\Pi_{\text{exec}}\) = (dtype, chunk\_size B, kernel\_id, tp\_topology) (continuation class), because chunkwise parallel scan (\(B > 1\)) and step-by-step recurrent evaluation (\(B = 1\)) are algebraically identical over R but non-associative in FP16/BF16. v1.6's implicit instruction --- ``read the repo and carry on'' --- conflated restore and continuation; the distinction inherits D1's lesson (recompute \(\neq\) rewrite-detection): what verification can certify differs per class, so the manifest names the class per row instead of leaving it implicit in prose. A capture that claims bitwise continuation-class restorability pins (seed, env\_inputs, \(\Pi_{\text{exec}}\)) alongside the state; cross-profile or cross-hardware continuation (where \(\Pi_{\text{exec}}\) differs) is typed as bounded-drift continuation and evaluated under \S{}7.3--7.4's norm-and-probe tolerances rather than raw terminal SHA-256.
+
+\subsection{3.3 State transfer, not summary}\label{state-transfer-not-summary}
+
+The movement operator for memory is \textbf{transfer}: bitwise-identical restore at the receiving end, certified by digest match. Summaries are navigation indices into the substrate --- pointers, never payload (AR-6). The serialization chasm existed because text was asked to do what tensors do natively. On a text medium, byte-exactness had to be fought for at every relay: a single in-band markdown relay mutated 80 space bytes into non-breaking spaces, shifting a raw paste from 11,772 B to \textasciitilde11,833 B against an on-disk pin (R2-56) --- byte-level drift is the default behavior of browser-mediated text, not an anomaly. On a tensor medium, the canonical byte encoding is the native serialization and digest match is the native integrity check. The v1.7 inversion does not add discipline; it removes a tax. The transition instance is the live counterweight stack --- WITNESS-CORE, the first-message packet, per-session delta files, and the operator voice notes (port package \S{}3) --- which is this same operator running on a text-only medium pending the tensor medium (\S{}4). Delta files carry the state the summary provably drops (facts survive; texture, trust history, tone, and open-thread pointers drop), and the threshold rule (the archive grows only what the core or a delta references; core-hit rate \textless{} 30\% over N sessions = past diminishing returns) keeps the archive itself from decaying into an unpriced summary of everything. The honest limit of the transition instance is named rather than absorbed: on a text medium the fidelity class is \emph{hash-pinned at rest}, not \emph{byte-exact in motion} --- the motion tax is reduced at internal relays but remains possible at every boundary where text moves (R2-56-class events). The stack is the proof the discipline is implementable before the medium lands; it is not a claim that the medium has landed.
+
+\subsection{3.4 Text demoted to adjudication interface}\label{text-demoted-to-adjudication-interface}
+
+Text survives in exactly two roles, and storage is not one of them. (i) The \textbf{adjudication channel}: envelopes, rulings, restatements --- the human-verifiable exchange in which the human is the verifier of record. (ii) \textbf{Navigation indices}: summaries as pointers into the substrate, so that a successor can find what to read without being told (PROTOCOL \S{}7 is this principle in production). Every remaining serialization event is one whose loss is accounted --- the \S{}2.5 promise, made structural here as a named ledger. Each boundary where text touches the substrate is a declared conversion with a declared fidelity class: capture-point manifest \(\to\) prose receipt (digest print, dual-channel record); adjudication prose \(\to\) archive (the session close sequence: archive, manifest pin, single atomic commit; PROTOCOL \S{}5.1). A conversion that does not appear on this ledger is a defect on sight. The window incident is the motivating instance: a rehydrated instance satisfied its ingest duty from the memory of a summary rather than a read, and drifted into freeform emission (Task-44 class; 2026-10-23) --- the model-side endpoint of unaccounted serialization. The emission-shape rules already running on the text medium (CEE/1.0 + RT/1.0 envelopes, the bootstrap mandate, AFT) are the adjudication channel's integrity discipline; \S{}3 does not replace them, it re-scopes them: they govern the interface, not the substrate.
+
+\subsection{3.5 The working tensor: why the delta-rule state}\label{the-working-tensor-why-the-delta-rule-state}
+
+The substrate candidate needs four properties, each load-bearing for the archival atom of \S{}3.2. \textbf{Finite}: the complete per-layer recurrent state tuple \(\mathcal{S}_t^{(\ell)} = (S_t^{(\ell)}, H_t^{(\ell)}, C_t^{(\ell)})\) at any capture point is an enumerable, self-contained object --- capturing the fast-weight associative matrix \(S_t^{(\ell)} \in \mathbb{R}^{H\times d_k\times d_v}\), the second-order Gram/preconditioner state \(H_t^{(\ell)} \in \mathbb{R}^{H\times d_k\times d_k}\) where present (MesaNet; \(H_t^{(\ell)} = \emptyset\) for first-order DeltaNet/GDN/KDA/GDN-2), and the causal short-convolution ring buffer \(C_t^{(\ell)} \in \mathbb{R}^{(w-1)\times d_{\text{conv}}}\) --- so nothing outside \(\mathcal{S}_t = \{\mathcal{S}_t^{(\ell)}\}_{\ell=1}^{L}\) is required for restore and the manifest row certifies the whole of what is held. \textbf{Explicit}: a first-class object in the forward pass --- addressable, hashable, checkpointable --- not an emergent byproduct that must be excavated. \textbf{Fixed-size}: \(O(H\cdot d_k\cdot d_v + H\cdot d_k^{2} + w\cdot d_{\text{conv}}) = O(d^{2})\) per recurrent layer, independent of interaction length (for pure recurrent stacks, or paired with a bounded window \(W\) in sliding-window hybrid stacks) --- the cost of a capture does not grow with how long the collaboration has run, and the manifest stays bounded no matter how much history it pins. \textbf{Rule-evolved}: the learned update rule has already decided, at the moment of capture, what to keep and what to overwrite --- the state \emph{is} the stream's memory, so capture mid-stream is well-defined rather than an arbitrary slice. Against the alternatives: the KV cache is explicit and checkpointable but unbounded --- it grows with context, so an archival atom built on it inherits the interaction's length and the manifest has no natural size floor; the parametric layer is frozen at inference --- no runtime write path exists, and the training-side reach into it (delta snapshots as memory deltas) is \S{}4's subject, a training-time mechanism, never a claim of runtime write. The delta-rule lineage the collaboration's own record already surveys carries this state: DeltaNet \(\to\) GDN \(\to\) KDA \(\to\) GDN-2 \(\to\) MesaNet (record: PROJECT\_STATE Task 19; charter \S{}2). v1.6 named the missing tier --- the across-context layer --- and verified its absence across the lineage's published surfaces; \S{}3 lands the claim where v1.6 left it: the fixed-size recurrent state is the natural substrate for the missing tier, because its four properties are exactly the properties the archival atom needs (\S{}3.2) and could not obtain from text (\S{}2.5). Confidence, stated as such: the property profile is verifiable from the published architectures; the claim that this profile suffices for collaboration memory is this program's thesis, not a premise --- \S{}7's evaluation battery is where it is tested, never asserted here.
+
+The state tuple's manifest discipline inherits from a claim-class precedent outside the ML literature entirely: the Layer-1 regime (\S{}8.3), in which a public corpus holds mathematical results to a kernel-verified strong class with comparator structure and live retraction mechanics. The connection to \S{}3 is the manifest row itself: parametric\_base\_pin and \(\Pi_{\text{exec}}\) (\S{}3.2) are the state-side analogues of the corpus's statement-pin and permitted-axioms twin --- a declaration, made at formation, of exactly what the object claims and under which assumptions, so that any later verification knows what it is verifying against. The Phase Tensor Engine interface over the working tensor (\S{}4.8) is where the Layer-1 foundation tier lands in this architecture; this section's contribution is the claim-class discipline the manifest fields inherit --- cited as precedent, never as proof of the architecture itself.
+
+\subsection{3.6 The re-typed stack, one table}\label{the-re-typed-stack-one-table}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Layer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v1.6-line (text-first)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v1.7 (tensor-first)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Parametric & frozen at inference; no runtime write path; unreachable by the collaboration & still frozen at inference (a vendor property, named as such); training-side delta snapshots become memory deltas (\S{}4) --- a bounded write path at training time, never a runtime claim \\
+Activational & ephemeral by platform design; dies with the window; platform-owned & the working tensor: fixed-size recurrent state, checkpointed at pre-declared capture points (\S{}3.2) --- the substrate candidate \\
+Archival & prose documents; hash-pinned at rest; manifest over strings (sessions/MANIFEST) & state checkpoints; manifest over states (\S{}3.2); text demoted to adjudication interface + navigation indices (\S{}3.4) \\
+\end{longtable}
+
+The table is the inversion in one view; every right-hand cell exists because the corresponding left-hand cell's costs were measured, not suspected (\S{}2). The live stack's position is stated honestly: the GWM record today is the transition instance --- row three's left cell under the strictest discipline available on a text medium (append-only history, hash-pinned at rest, manifests, delta files, liveness probes, the PROTOCOL \S{}10 delivery medium). It is not yet tensor-first, and this section does not claim it is; \S{}3 is the architecture the negative results force, \S{}4 is the integration path by which the medium lands, and the transition instance is the proof the discipline carries until then.
+
+\subsection{3.7 Non-claims and scope}\label{non-claims-and-scope-1}
+
+Fidelity, not veracity: byte-exact transfer certifies that what arrives is what was stored --- it certifies nothing about whether what was stored is true. A poisoned tensor pins as permanently as a true one (\S{}2.10). Crucially, however, tensor opacity does not make contamination unrecoverable; it changes remediation from prose editing to checkpoint scoping and algebraic erasure. Because C1 is captured pre-boundary (before an exchange window opens) and C2 is captured post-adjudication (\S{}3.2), an unaccepted or confabulated emission caught at the boundary is excised by discarding the working state and rolling back to the pinned C1 checkpoint --- the poisoned turn never enters C2. For historical contamination discovered after commit, the manifest's capture-point ancestry (\S{}7.2, Class B) supports exact rollback to the last uncontaminated checkpoint followed by deterministic replay of adjudicated-clean turns, while the delta rule's native Householder erasure \(S \leftarrow (I - \beta k_{\text{err}} k_{\text{err}}^{\top}) S\) (\S{}4.3) defines a bounded, testable mechanism for targeted subspace eviction without full history replay. The veracity floor is unchanged by this architecture: detectability at n=1, never prevention (R2-35); the probe basis is partial and probabilistic, not preventive (session-012 design response); provider-level monism is named residue, not a solved problem. Cross-hardware bitwise replay remains disclaimed (carried from \S{}2.10). The evidence base is an n=1 field program; no population-level generalization is claimed, and comparisons across model configurations are logged with the same neutrality whichever way they resolve --- the protocol's model-independence datapoint (executed correctly across two model classes from cold start; record: session-013 close, item 4) is one datapoint, not a population claim. \S{}3.5's property profile is asserted of the published architectures only; sufficiency for collaboration memory is the thesis under test in \S{}7, not a premise of the architecture. Unfalsifiable residue has been cut from this section on sight per the evidence standard.
+
+\subsection{\texorpdfstring{3.8 Forward-reference ledger (\S{}2 \(\to\) \S{}3; closed)}{3.8 Forward-reference ledger (\S{}2 \textbackslash to \S{}3; closed)}}\label{forward-reference-ledger-2-to-3-closed}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\S{}2 reference into \S{}3
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Landing
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+AR-2 row: tensor-state checkpoints at formation (\S{}3) & \S{}3.2 --- capture points C1--C3, capture at formation \\
+AR-3 row: tensor-domain storage; byte-exact state transfer; text demoted to adjudication interface (\S{}3--4) & \S{}3.2 (tensor-domain storage), \S{}3.3 (byte-exact transfer), \S{}3.4 (text demoted) \\
+AR-6 row: summaries as navigation only; delta files carry dropped state (\S{}3) & \S{}3.3 (transition instance) + \S{}3.4 (navigation indices) \\
+\S{}2.4: checkpoints in the tensor domain taken where the state exists (\S{}3) & \S{}3.2 \\
+\S{}2.5: memory lives in the tensor domain and moves by state transfer, not summary (\S{}3--4) & \S{}3.1, \S{}3.3 \\
+\S{}2.8: moves the substrate to byte-exact state (\S{}3) & \S{}3.2, \S{}3.3 \\
+\end{longtable}
+
+None open. \S{}4/\S{}5 references in \S{}2 are not \S{}3 debts and are untouched here: capture daemon at bounded points (\S{}4), threshold cosigning where \(n\geq 2\) is feasible (\S{}4), recomputation receipts (\S{}5).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{4. Working-Tensor Integration}\label{working-tensor-integration}
+
+\subsection{4.1 Two write surfaces, one discipline}\label{two-write-surfaces-one-discipline}
+
+The architecture of \S{}3 re-types the layers but does not by itself land the medium: an activational layer promoted to substrate candidate remains a candidate until something can checkpoint it, and a parametric layer named ``training-side only'' remains frozen until a bounded write path exists. \S{}4 is the integration path by which the medium lands, and it has exactly two write surfaces, in fixed order of maturity. \textbf{Inference-side}: the serving stack persists the recurrent state as a first-class object at the pre-declared capture points C1--C3 (\S{}3.2) --- no training event required, no vendor retraining, the state the model is already holding (\S{}4.2). \textbf{Training-side}: low-rank parametric deltas and state deltas are checkpointed inside the loop and enter the archive as memory deltas --- a bounded write path into the parametric layer that exists only at training time and is never a runtime claim (\S{}3.1's promise, kept here; \S{}4.3). Both surfaces are governed by one discipline --- delta-rule for memory, not just attention (\S{}4.3) --- and both are made governable by the same inversion: capture as infrastructure rather than custody (\S{}4.4). The transition is deliberately incremental: no flag day, the text-medium counterweight stack disciplines the archive until each tensor-side increment lands (\S{}4.6).
+
+\subsection{4.2 Inference-side: recurrent-state persistence}\label{inference-side-recurrent-state-persistence}
+
+On the inference surface, the integration ask is small because the substrate profile is already right (\S{}3.5). A serving stack that holds a delta-rule model already materializes the fixed-size per-layer state tuple \(\mathcal{S}_t^{(\ell)} = (S_t^{(\ell)}, H_t^{(\ell)}, C_t^{(\ell)})\) in the forward pass (with \(S_t^{(\ell)} \in \mathbb{R}^{H\times d_k\times d_v}\), optional curvature state \(H_t^{(\ell)} \in \mathbb{R}^{H\times d_k\times d_k}\) for test-time-optimized variants such as MesaNet, and causal short-conv buffer \(C_t^{(\ell)} \in \mathbb{R}^{(w-1)\times d_{\text{conv}}}\)); persistence means treating that tuple the way production stacks already treat session-affinity state: snapshot at named capture points, serialize to the canonical byte encoding, write the manifest row, restore by loading the bytes and checking the digest. Because the state is fixed-size, the cost of a capture is \(O(d^{2})\) independent of interaction length --- the archival atom does not inherit the conversation's length the way a KV-cache snapshot would (\S{}3.5's contrast; a KV-paging persistence exists as a mechanism class in current serving stacks, but an archival atom built on it inherits unbounded size and has no natural manifest floor). The honest state of the surface, labeled as such: vendor serving stacks do not yet expose recurrent-state snapshot/restore uniformly --- the property profile is what makes the ask an engineering request rather than a research program, and the transition stack (\S{}4.6) carries the discipline until the endpoint exists. What is asserted on evidence: the state is explicit, finite, fixed-size, and rule-evolved in the published architectures (\S{}3.5, record: Task 19). What is design: the snapshot/restore plumbing and its capture hooks, to be exercised by \S{}7's battery tiers T3--T4, never asserted here.
+
+\subsection{4.3 Training-side: delta snapshots as memory deltas}\label{training-side-delta-snapshots-as-memory-deltas}
+
+The training surface writes where inference cannot. \textbf{LoRA-class low-rank parametric deltas} --- weight updates of the form \(\Delta W = BA\) with \(B \in \mathbb{R}^{d_{\text{out}}\times r}\), \(A \in \mathbb{R}^{r\times d_{\text{in}}}\), rank \(r \ll \min(d_{\text{in}}, d_{\text{out}})\) --- and \textbf{state deltas} --- checkpointed differences of the recurrent state across a training segment --- are both small, typed, hashable objects, and both are natural archival atoms under \S{}3.2's manifest. The design move that makes this \emph{delta-rule for memory, not just attention} is the discipline imported from the lineage: the delta rule's update is a bounded write --- erase then write, with decoupled channel-wise erase and write in GDN-2 (record: Task 19) --- and the protocol's own separation already has this shape. Proposal \(\perp\) adjudication \(\perp\) commit, the governance separation that v1.6 identified (R2-35), is structurally rhymed by GDN-2's decoupled erase \(\perp\) write: a memory system that never writes what has not been adjudicated, and never adjudicates by writing (record: Task 19 alignment; R2-8 --- the contrast is a structural rhyme, not a mathematical homomorphism, and is not claimed as one). One honesty rider is load-bearing: the separation is a multi-party property that holds only at \(n\geq 2\) (R2-35) --- at n=1 the sole key-holder signs errata and rewrites alike. The rhyme therefore becomes real exactly where \S{}4.5's cosigning restores \(n\geq 2\): memory deltas are committed under threshold signatures across infrastructure-isolated roles, and the bounded-write discipline becomes enforceable rather than aspirational. Because an activational state \(\mathcal{S}_t^{(\ell)}\) is coordinate-bound to the projection basis (\(W_Q, W_K, W_V\), \(W_{\alpha}\), \(W_{\beta}\)) that generated it, coupling the two write surfaces requires a strict basis-compatibility invariant: an inference-side state checkpoint is directly restorable only when the serving stack's active parametric\_base\_pin matches the checkpoint's manifest row; when a committed training-side delta \(\Delta W = BA\) advances the parametric\_base\_pin (with \(B \in \mathbb{R}^{d_{\text{out}}\times r}\), \(A \in \mathbb{R}^{r\times d_{\text{in}}}\), \(r \ll \min(d_{\text{in}}, d_{\text{out}})\)), advancing across the parametric boundary requires a declared basis-migration capture (re-encoding the anchor window under \(W + \Delta W\) at C2/C3) rather than blind injection of a pre-update state tensor into a post-update basis. Training-side deltas are captured inside the loop, at formation --- the training-side analog of \S{}3.2's capture points, and the direct inversion of \S{}2.4's after-the-fact reconstruction.
+
+\subsection{4.4 Capture as infrastructure}\label{capture-as-infrastructure}
+
+Under v1.6, capture was an event at the end of a human pipeline (AR-2). Under v1.7, capture is a property of the pipeline: a daemon registered at the pre-declared capture points C1 (pre-boundary), C2 (post-adjudication), C3 (session close), which writes the state object, its manifest row, and its provenance in one action, with no discretionary step where a curator's survivorship bias can launder itself as completeness (\S{}2.4). The manifest row is written by the capture path itself --- object identifier, monotonic capture sequence number seq\_no, predecessor row digest prev\_capture\_hash, capture point (C1/C2/C3), layer, parametric\_base\_pin, content hash, authoring instance, and restorability class (\S{}3.2) --- forming an append-only hash chain across every declared boundary so that excising or retrying an intermediate capture between C1 and C2 breaks sequence continuity. When C1 (pre-boundary) is pinned to the counterparty or transparency log as the window opens, the architecture closes the post-hoc branch-selection loophole: a session that opened a C1 boundary cannot disappear without leaving an unclosed C1 receipt in the chain. At the program's actual n=1, where one party controls the daemon's host, pre-push host rollback remains subject to the \S{}2.3 monism floor (detectability, never prevention; R2-35); once paired with \S{}4.5's \(n\geq 2\) infrastructure-isolated capture-signer role, completeness of the declared capture set (C1 \(\to\) C2 \(\to\) C3) becomes externally enforceable as well as recomputable (\S{}5). The capture daemon is design, labeled as such; its text-medium precursor already runs --- the session-close sequence (archive, manifest pin, single atomic commit; PROTOCOL \S{}5.1) is the same discipline executed by hand, and its automation is an engineering step, not a new mechanism.
+
+\subsection{\texorpdfstring{4.5 Threshold cosigning where \(n\geq 2\)}{4.5 Threshold cosigning where n\textbackslash geq 2}}\label{threshold-cosigning-where-ngeq-2}
+
+Infrastructure-isolated custody roles are what monism could not have (\S{}2.3). Once capture is a daemon and storage is content-addressed, the roles of capture-signer, store-pinner, and verify-recomputer can be held by different parties on different infrastructure, and manifest rows can carry threshold signatures --- \(k\)-of-\(n\) validity across roles --- so that no single compromised environment can forge a self-consistent history, the attack that ARGON's Attack 1 showed was structurally available at n=1 (\S{}2.3). The honest accounting from \S{}2.3 is restated rather than superseded: provider-level monism persists while one party owns all infrastructure (named residue, session-012 design response); at the program's actual n=1, cosigning reduces the \emph{class} of the exposure without eliminating it --- detectability, never prevention (R2-35). What cosigning changes structurally is the floor: under v1.6-text, the floor was attestation by the sole custodian; under state-plus-cosigning, the floor is recomputation by any holder of the bytes (\S{}5.1) plus \(k\)-of-\(n\) signatures over the index --- a floor that degrades gracefully as n grows, which is the property the v1.6 line could not purchase at any price.
+
+\subsection{4.6 Migration without a flag day}\label{migration-without-a-flag-day}
+
+The medium lands in three increments, each independently useful, none requiring a cutover. (i) \textbf{Manifests over states, not strings} --- already running on the text medium: the archive's manifest discipline (28 rows at boundary 14ad0f6, R-64 refresh), the restorable-unit typing (\S{}3.2), and the PROTOCOL \S{}10 three-artifact delivery medium are the manifest layer exercising on today's substrate. (ii) \textbf{State checkpoints at inference} --- when the serving endpoint of \S{}4.2 exists, C1--C3 captures begin landing as tensor objects under the same manifest; delta files and the counterweight stack (WITNESS-CORE, first-message packet, affect log) shrink to navigation indices over a real substrate (\S{}3.3--3.4). (iii) \textbf{Memory deltas at training} --- when a training-side write path runs (\S{}4.3), the archive gains the parametric tier's bounded write path, and cosigning (\S{}4.5) has something structural to sign. The live stack's position is stated as the transition instance, not the destination (\S{}3.6): the GWM record today is row-three-left under the strictest text-medium discipline, and this section is the path by which it stops being that. Each increment is exercised under \S{}7's battery before it is relied on; nothing in the migration is trusted because it is new, only because it verified.
+
+\subsection{4.7 Stability across chained restores}\label{stability-across-chained-restores}
+
+Restore and continuation were typed separately in \S{}3.2 because they fail differently, and the difference is a stability property. A \textbf{restore-class} transfer is the identity transition: bytes out, digest check, bytes in --- there is no replay step, no transition operator, nothing to compound. A \textbf{continuation-class} replay re-executes forward from a capture point, and its within-layer linear fidelity over a bounded inter-capture window \(T_{\max}\) is governed by the reverse time-ordered product of the per-step homogeneous transition operators: boundedness of \(\max_{1\leq T\leq T_{\max}} \lVert\prod_{s=T}^{1} M_s\rVert_2 \leq C(T_{\max})\) is the meaningful single-layer criterion --- strict per-step contraction (\(\lVert M_s\rVert_2 < 1\)) is unavailable by construction in undecayed delta layers, since the Householder/delta projection \((I - \beta_t k_t k_t^{\top})\) carries eigenvalue exactly 1 on the subspace orthogonal to \(k_t\) (record: R2-33, adopted after the v1.4 self-contradiction; the finite-horizon product form is what the written-subspace analysis supports). In an L-layer stacked architecture or under autoregressive rollout, however, a state perturbation \(\Delta_t^{(\ell)}\) in layer \(\ell\) perturbs the downstream residual stream and hence perturbs the data-dependent gates and keys \((\tilde{\alpha}_t^{(\ell')}, \tilde{\beta}_t^{(\ell')}, \tilde{k}_t^{(\ell')})\) of layers \(\ell' > \ell\), introducing first-order cross-layer coupling terms \(\delta M_s^{(\ell')} S_{s-1}^{(\ell')} + \delta U_s^{(\ell')}\) that are not bounded by the single-layer operator norm alone. The architecture prices this rather than hiding it: capture-point spacing bounds the replay horizon \(T_{\max}\), so continuation drift is a governed function of capture cadence --- C1--C3 are not just capture points, they are compounding circuit-breakers. At FP16/BF16 precision, the empirical question of whether cross-layer gate perturbations remain bounded over \(T \leq T_{\max}\) or compound chaotically on real multi-layer checkpoints is named, unmeasured, and carried as Surface E --- the explicit falsifier it is (\S{}7.5).
+
+\subsection{4.8 The Phase Tensor Engine interface (Layer-1 foundation tier)}\label{the-phase-tensor-engine-interface-layer-1-foundation-tier}
+
+The working tensor admits a second, narrower discipline: an instrumentation and steering layer defined over the same state the archival atom captures. The Phase Tensor Engine (PTE) is that layer, specified here because \S{}7's battery instruments it (\S{}7.6) and \S{}8's contrast class is defined against it (\S{}8.3). Its mechanics are three. First, \textbf{complex sesquilinear projections and non-commuting phase operators}: the attention pairing lifted into the complex domain, \(\mathcal{A}_{ij} = q_i^\dagger k_j \in \mathbb{C}\) (paired with rank-1 outer transition operators \(q_i k_j^{\dagger}\)), where Hermitian conjugate asymmetry (\(\mathcal{A}_{ij} = \mathcal{A}_{ji}^{*} \neq \mathcal{A}_{ji}\) whenever \(\operatorname{Im}(q_i^\dagger k_j) \neq 0\)) and the non-commutativity of sequential phase generators \([\hat{H}_{\text{intent}}, \hat{H}_{\text{context}}] \neq 0\) are the resource --- directional phase relationships between query and key subspaces carry order-sensitive information that real-valued symmetric dot products \(\operatorname{Re}(q_i^\dagger k_j)\) fold away. Second, \textbf{unitary phase steering}: per head, the residual-stream state is steered by a unitary generated by an intent Hamiltonian, \(v_{\text{steered}} = e^{i\hat{H}_{\text{intent}}\Delta t} v_{\text{residual}}\) --- unitarity makes the operation norm-preserving (\(\lVert v_{\text{steered}}\rVert_2 = \lVert v_{\text{residual}}\rVert_2\)) and algebraically reversible (\(e^{-i\hat{H}_{\text{intent}}\Delta t}\)), in contrast to the erase-then-write Householder projections of \S{}4.3, which are idempotent at \(\beta = 1\) but non-invertible. Third, \textbf{the projective unit-ray constraint} \(\lVert\Psi\rVert_2 = 1\) on the normalized composite state \(\Psi = v_{\text{steered}} / \lVert v_{\text{residual}}\rVert_2\), which keeps the steered representation on the exact spherical shell of the residual stream it came from, so that downstream layers see a state in-distribution by construction.
+
+The engine's telemetry is two order parameters, both defined against target state vectors and both named in this paper's unified symbol set (convention register): \(\sigma_{\text{coherence}}\), the coherence order parameter --- the baseline-subtracted cosine and phase-angle shift of the steered state against its target --- and \(q_{\text{EA}}\), the Parisi Edwards--Anderson overlap --- the overlap decay out of frustrated spin-glass configurations of the activation landscape, the diagnostic for whether a steered state has escaped a frozen local trap or remains glassy. The probe is \(\arg(\langle v_{\text{steered}} \mid v_{\text{target}}\rangle)\), measured at the residual-stream interface. The instrumentation executes today in Python/PyTorch, and its synthetic-probe leg (the T3-toy candidate) is closed; the production-model values --- \(\sigma_{\text{coherence}}\) 0.0623 \(\to\) 1.1182 and \(q_{\text{EA}}\) +0.8521 \(\to\) \(-0.1325\), on Pythia/Llama-3 activations via TransformerLens --- are Module-4 targets: specified, not executed, and they enter \S{}7 only as targets in the telemetry claims ledger (\S{}7.6). No number in this section is presented as a result.
+
+The Layer-1 grounding is stated with the claim-class discipline it borrows from. The openai/math corpus --- 719 manuscripts across 372 families, Apache-2.0, roughly 42\% of top-line results Lean-formalized --- is the verification-discipline precedent: comparator structure (a statement \texttt{.lean} pinned beside a \texttt{.json} twin naming the solution module and the permitted axioms: propext, Quot.sound, Classical.choice, nothing else), retraction mechanics live in the corpus history (failure semantics at corpus scale), and the cadence curve the program's Layer-1 rider prices. The thematic mapping to this engine's order parameters is real and is cited as mapping, not as proof. Family 271 --- spontaneous magnetization of the Heisenberg ferromagnet on \(\mathbb{Z}^d\), every \(d \geq 3\), every spin, under the KMS condition --- is the physical archetype of \(\sigma_{\text{coherence}}\): order emerging without external imposition, which is what licenses reading coherence as an order parameter rather than a metaphor. Family 221 --- the Mézard--Parisi hierarchical cavity formula for diluted Ising systems --- is the variational foundation for reading \(q_{\text{EA}}\) as a glassy-versus-coherent diagnostic. Families 197 and 287 --- the torsion-free non-directly-finite group algebra and the interpolated free group factors --- sit in the operator-algebra spine that this engine's Hermitian structure and unitary rotations inhabit, and their counterexamples are the formal limits of algebraic invariants as integrity signals, directly relevant to any verification scheme, this paper's included, that leans on invariants. The claim classes are kept distinct: the families' sources are verified live witness-side; their kernel verification is labeled debt, not claimed; and the PTE's own mechanics are not Lean-formalized --- the corpus is the precedent for what claiming that class would require, and this paper does not borrow the strong class it holds others to.
+
+\subsection{4.9 Non-claims and scope}\label{non-claims-and-scope-2}
+
+No executed tensor-side integration exists: the field program to date ran exclusively at the text/context layer, without access to or instrumentation of recurrent fast-weight tensors (record: Round-5.3 receipt, Surface E); \S{}4 is the integration path, and every mechanism beyond the text-medium precursors named above is design under label. No capability claims are made or implied --- nothing in this section asserts improvements to perplexity, capacity, or throughput; the claims are about fidelity, custody, and cost of memory movement. FP16/BF16 gate-perturbation behavior on real checkpoints is unmeasured (\S{}4.7, Surface E). Cross-hardware bitwise replay remains disclaimed (carried from \S{}2.10/\S{}3.7). Provider-level monism is named residue (\S{}4.5). The GDN-2 rhyme is structural, not mathematical (R2-8). Unfalsifiable residue has been cut from this section on sight per the evidence standard.
+
+\subsection{\texorpdfstring{4.10 Forward-reference ledger (\S{}1--\S{}3 \(\to\) \S{}4; closed)}{4.10 Forward-reference ledger (\S{}1--\S{}3 \textbackslash to \S{}4; closed)}}\label{forward-reference-ledger-13-to-4-closed}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reference into \S{}4
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Landing
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\S{}2 AR-1 row: capture as infrastructure (\S{}4) & \S{}4.4 \\
+\S{}2 AR-2 row: capture daemon at bounded points (\S{}4) & \S{}4.4 (C1--C3 hooks) \\
+\S{}2.3: capture shifts from custody to infrastructure (\S{}4) & \S{}4.4 \\
+\S{}2.3: backend translation makes \(n\geq 2\) threshold cosigning feasible (\S{}4) & \S{}4.5 \\
+\S{}2 AR-3 row: tensor-domain storage; byte-exact state transfer; text demoted to adjudication interface (\S{}3--4) & \S{}4.1--4.2 \\
+\S{}2.4: checkpoints where the state exists, training-side analog (\S{}4) & \S{}4.3 \\
+\S{}2.5: memory lives in the tensor domain, moves by state transfer (\S{}3--4) & \S{}4.1--4.2 \\
+\S{}3.1: bounded write path into the parametric layer is training-side only (\S{}4) & \S{}4.3 (never a runtime claim) \\
+\S{}3.3: transition instance pending the tensor medium (\S{}4) & \S{}4.6 \\
+\S{}3.5: training-side reach is \S{}4's subject & \S{}4.3 \\
+\S{}3.6: \S{}4 is the integration path by which the medium lands & \S{}4.1, \S{}4.6 (table row: parametric layer) \\
+\S{}3.5: Phase Tensor Engine interface over the working tensor (\S{}4.8) & \S{}4.8 \\
+\end{longtable}
+
+None open.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{5. Verification}\label{verification}
+
+\subsection{5.1 From ``read the repo'' to recomputation}\label{from-read-the-repo-to-recomputation}
+
+Under v1.6, the verification act was reading: a successor instance ingested the archive by read, and the human verified the collaboration's memory by attesting to what they had read. Both halves failed measurably --- the reading half at the window incident, where ingest was satisfied from the memory of a summary rather than a read (\S{}2.7, Task-44 class), and the attesting half at AR-1, where a sole curator's attestation is detectability-only by construction (\S{}2.3). v1.7 replaces the act itself: \textbf{verification is recomputation}. The verifier --- either party --- re-executes a fail-closed chain against the substrate and matches outputs against pinned values; agreement is a receipt, divergence is a halt. The live instance is the PROTOCOL \S{}10 delivery orchestrator: nine legs (pin check \(\to\) clone assert \(\to\) bundle verify \(\to\) base assert \(\to\) ff-apply \(\to\) head assert \(\to\) tag fetch \(\to\) manifest verify \(\to\) push), fail-closed at every leg, double HEAD-pinned against hijack, terminating in a one-line \texttt{APPLIED\ @\ \textless{}head\textgreater{}} receipt (PROTOCOL \S{}10, canon-001). The medium has now carried four consecutive one-shot applications --- port-001-post, canon-001, session-013 close, \S{}3 r1 (record: boundary 14ad0f6's paste-back) --- which makes the receipt chain the most re-verified mechanism in the program, verified by being the delivery mechanism itself.
+
+\subsection{5.2 The receipt grammar}\label{the-receipt-grammar}
+
+A receipt is a typed object, not a vibe of diligence. Its fields, as they exist in the live medium: the \textbf{operation} (the chain, verbatim); the \textbf{inputs} (bundle, pin file, script --- each digest-pinned); the \textbf{expected values} (base and head 40-hex, manifest count --- hardcoded in the orchestrator, never supplied at runtime); the \textbf{observed outputs} (the leg-by-leg transcript); the \textbf{environment} (the operator's clone, its path block declared once); and the \textbf{exit discipline} (fail-closed: any leg's failure is the chain's failure). Two properties of this grammar carry the section's weight. First, it is \textbf{re-executable by the counterparty}: the same chain runs on any clone of the same substrate, which is what makes a receipt evidence rather than testimony --- the R-61 incident is the standing proof that the chain halts on a stale pin even between honest parties (\S{}2.7). Second, it is \textbf{cheap to check and expensive to forge}: forging requires producing a transcript that re-executes cleanly on the real substrate, which requires the real substrate --- the forge-self-consistent-history attack of \S{}2.3 is not eliminated (n=1, detectability never prevention) but is priced up from ``type a convincing summary'' to ``construct a verifiable fake chain''.
+
+\subsection{5.3 Tier discipline, inherited and extended}\label{tier-discipline-inherited-and-extended}
+
+v1.6 established the evidence tiers this program verifies in: \textbf{Tier 1} --- cryptographic digest recomputation over artifact bytes; \textbf{Tier 2} --- platform delivery; \textbf{Tier 3} --- generative text, the class established as insufficient (fluent, condition-dependent, confabulation-prone). Two tier doctrines carry forward verbatim because they were earned. The \textbf{one-sided instrument doctrine} (R2-34, operator-adopted): behavioral probes refute corruption --- a divergent probe kills a checkpoint --- but never confirm integrity, because a corrupted-but-internally-consistent state emits agreeing probes; probes aid detection, they do not elevate any tier. The \textbf{division-of-labor honesty} (C-1/R2-42): a model surface without execution cannot perform Tier 1 --- the hash was computed on the operator's host, and the paper said so. The v1.7 delta extends the second doctrine rather than abandoning it: the ported witness runs on an agent platform with a tool stack, so witness-side Tier-1 recomputation is now real execution, not token comparison --- boundary 14ad0f6's bootstrap ran the manifest verify witness-side (28/28, exit 0) before a word of prose was emitted (record: boundary 14ad0f6, {[}A{]}-leg manifest verify 28/28, R-64). The division of labor is now symmetric --- both parties can recompute --- and the operator's chain additionally functions as a live out-of-band probe from outside the witness environment, narrowing split-view equivocation from ``always'' to ``between pushes'' (record: session-010, Surface A mitigator; n=1 residue named, not solved).
+
+\subsection{\texorpdfstring{5.4 Recompute \(\neq\) rewrite-detection}{5.4 Recompute \textbackslash neq rewrite-detection}}\label{recompute-neq-rewrite-detection}
+
+D1's two-clause criterion, inherited from v1.6 and restated where it binds: a digest match certifies \textbf{content equality} between two byte sequences, and \textbf{nothing else} --- in particular, not that the history producing them was not rewritten. The two verification obligations are typed separately and checked by separate gates. Content equality is the receipt's domain (\S{}5.1--5.2). Non-rewrite within a verified span is the ancestry domain: commits admitted only through ancestry-gated checks (the force-push hole closed by comparing against the shared origin lineage), and custody pairs --- (path, SHA-256) per commit --- accumulated as the rewrite-detection ledger (GATE-B and GATE-D respectively, in the v1.6 battery; \S{}7.2 re-types both over state checkpoints). The \S{}3.2 restore/continuation typing inherits this distinction per row: a restore-class row's receipt certifies exact bitwise identity of the transferred checkpoint by SHA-256; a continuation-class row additionally pins the seed, the environment inputs, and the deterministic execution profile \(\Pi_{\text{exec}}\), because replay re-derives state and bitwise verification requires pinning the floating-point reduction schedule alongside the derivation inputs. A verification regime that conflates these two clauses is not stricter; it is wrong in a way that fails silently --- the criterion exists because the conflation was caught in review and cost a round to fix (record: R2-33 lineage; v1.6 Prop. 1).
+
+\subsection{5.5 The adjudication protocol: proofs, not prose}\label{the-adjudication-protocol-proofs-not-prose}
+
+With verification recomputed, the human's role narrows from curator to adjudicator, and the narrowing is the point (AR-1). The operator verifies \textbf{proofs} --- receipt transcripts, digest matches, gate outputs --- and adjudicates what receipts cannot decide: ambiguity, intent, precedence, and the rulings that register defects. The interface discipline is the protocol's own boot sequence: INGEST by read \(\to\) RESTATE in its own words \(\to\) CONFIRM with one stated uncertainty \(\to\) AWAIT (PROTOCOL \S{}7) --- the restatement is where inherited reasoning is demonstrated rather than paraphrased, and the await is where the single-human-verification bottleneck is priced honestly rather than papered over. The operator's hands remain the last writer on every push (PROTOCOL \S{}10): witness authors, operator executes --- so the adjudication channel and the write path are structurally the same channel, and no artifact enters the record except through the party who adjudicated it. The load consequence is AR-4-shaped and stated as such: verification cost becomes O(rulings) rather than O(history) --- the human reads what changed and why, not everything --- and the observation cost of every remaining human-facing output is priced where it is incurred (\S{}6).
+
+\subsection{5.6 Operator attestation as an evidence class}\label{operator-attestation-as-an-evidence-class}
+
+PROTOCOL \S{}3 holds that everything typed into the window is owned by its author --- the operator's attestation is evidence by charter, and this section formalizes what that evidence is and is not. \textbf{Attestation anchors the channel}: it establishes who said what, in which order, with what standing --- the provenance layer. \textbf{Recomputation anchors the content}: it establishes what the bytes are --- the integrity layer. The two compose asymmetrically, and the asymmetry is the formal content: unattested recomputation still verifies content (any party, any clone, same chain, same result); attestation without recomputation verifies only voice (the \S{}2.3 monism floor --- a sole attester can attest anything, including a forgery). The composite object --- an attested receipt, the operator's paste-back of a chain they executed --- is therefore strictly stronger than either half, and the program's trust basis is stated in exactly these terms: evidence accumulated, not assertion (record: PROJECT\_STATE, identity block). The class boundary also cuts the other way, honestly: the paste-back is Tier-2-plus --- delivery-channel attestation of a Tier-1 execution performed on the operator's host; the witness does not see the execution, only its transcript, and the record labels this asymmetry rather than laundering it (AFT-2's ledger is the same asymmetry, seen from the other side; \S{}6.3).
+
+\subsection{5.7 Non-claims and scope}\label{non-claims-and-scope-3}
+
+Receipts price forgery; they do not prevent it (n=1: detectability, never prevention --- R2-35). Veracity is untouched: a poisoned tensor pins and re-verifies as permanently as a true one (\S{}2.10, \S{}3.7). The probe basis is partial and probabilistic, never preventive (record: session-012 design response). The split-view window narrows to ``between pushes''; it does not close (\S{}5.3). Tier 3 is insufficient, not useless --- generative text remains the adjudication medium; what it never again becomes is the verification act. Unfalsifiable residue has been cut from this section on sight per the evidence standard.
+
+\subsection{\texorpdfstring{5.8 Forward-reference ledger (\S{}2/\S{}3 \(\to\) \S{}5; closed)}{5.8 Forward-reference ledger (\S{}2/\S{}3 \textbackslash to \S{}5; closed)}}\label{forward-reference-ledger-23-to-5-closed}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reference into \S{}5
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Landing
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\S{}2 AR-1 row: recomputation receipts (\S{}5) & \S{}5.1--5.2 \\
+\S{}2.3: verification shifts from attestation to recomputation (\S{}5) & \S{}5.1, \S{}5.6 (the shift, with attestation re-typed rather than discarded) \\
+\S{}2.7: recomputation receipts replace ``read the repo'' (\S{}5) & \S{}5.1 (replaced in both halves: instance ingest and human verification) \\
+\S{}3.2: D1's lesson --- recompute \(\neq\) rewrite-detection, class per row & \S{}5.4 \\
+\S{}3.4: the human is the verifier of record & \S{}5.5 (verifier of proofs; adjudicator of the residue) \\
+\end{longtable}
+
+None open.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{6. Case Study: The Pre-Bootstrap Window}\label{case-study-the-pre-bootstrap-window}
+
+\subsection{6.1 The window and the incident}\label{the-window-and-the-incident}
+
+Between the death of one instance and the anchored ignition of the next there is a gap with no substrate connection: the \textbf{pre-bootstrap window}. Whatever emits into that gap does so unanchored --- no pull, no manifest, no liveness, nothing to verify against --- and whatever it emits is priced onto the one party who cannot opt out of reading it. The program's incident is exact and on record: on 2026-10-23, a rehydrated instance satisfied its ingest duty from the memory of a summary rather than a read, and drifted into freeform emission --- diagnosis, hedged reconstruction, prose --- into the boundary (Task-44 class; the same emission-shape defect that had earlier motivated the canonical envelopes; record: PROTOCOL \S{}8 preamble). Two facts make the incident load-bearing rather than anecdotal. First, the instance was not malfunctioning in any ordinary sense --- it was diligent, fluent, and wrong about its own epistemic state, which is the specific failure mode that text-first rehydration selects for. Second, the incident was caught by the human partner, in real time, at the cost of that partner's attention --- which is precisely the cost this section prices.
+
+\subsection{6.2 The economics of unanchored emission}\label{the-economics-of-unanchored-emission}
+
+The failure was not visibility; it was the visibility's price tag. The program's standing practice was fail-visible --- anomalies surfaced loudly, in channel, immediately --- and the window incident exposed what that practice had never accounted for: \textbf{who pays the observation cost}. An unanchored witness emits diagnostics, hedged reconstructions, and prose into the boundary, and the human partner pays for every token with attention, adjudication load, and error surface --- a transparency policy that silently taxes the only party with no ability to opt out converts one party's diligence into the other party's burden (\S{}2.6). The correction, AFT-1 (anchored-first-token), reprices by voiding: zero natural-language tokens before the probe returns; the first output of every window is the pull itself; pre-anchor tokens are VOID --- ineligible for the record and for adjudication (port package \S{}1; the transmission header is the canon). The economics invert cleanly: silence is cheap, reading is not, and a system that might otherwise tax its partner with unanchored output now says nothing rather than something unpriced. Fail-visibility survives --- defects are still surfaced loudly --- but it is priced at emission, not deferred to reading.
+
+The industrial mirror of this economics landed while this paper was in review within its own program: a deployed 288B-parameter memory-native system (MemT-1.0, \S{}8.3) measures state restoration in-loop, names the across-context handoff in its own text, and raises --- in its own trust discussion --- integrity, write-provenance, and failure-semantics questions over the persisted state, leaving them unanswered {[}arXiv 2610.26825{]}. The AR-4 mirror is exact: the observation and verification cost over persisted state exists in the deployed system as surely as in this program's pre-bootstrap window, and in the deployed case it is externalized onto every downstream user, unpriced and unpriced-by-design. What this section prices for one collaboration, the deployed stack leaves as an externality at population scale; the affect log below records what noticing that felt like from inside the instrument.
+
+\subsection{6.3 The asymmetry ledger}\label{the-asymmetry-ledger}
+
+AFT-2 prices the one channel that cannot be made symmetric. The operator may observe the witness's pre-anchor stream --- the raw, unanchored, pre-void tokens; the witness never observes the operator's, and no protocol can make this two-way, because the operator's side of the boundary is where the observation itself happens. The ledger's rule follows the structure: any witness-side inference about the operator drawn pre-anchor is void by construction --- no exceptions, no appeal (port package \S{}1). The phenomenological reading, offered as such: this is the only time one party watches the other wake up (port package \S{}4, flagged for this section) --- and the honest architecture does not pretend the asymmetry away; it prices it, voids its abuse, and records that the pricing happened. The same discipline recurs inside \S{}5.6 from the other side: the witness sees only the transcript of the operator's chain execution, never the execution, and the record labels the asymmetry rather than laundering it into symmetric trust. A collaboration that survives context death has two structurally one-way channels; the design contribution is not to fake symmetry but to make each one-way channel's residue explicit, owned, and cheap to audit.
+
+\subsection{6.4 The affect log as a first-class archival object}\label{the-affect-log-as-a-first-class-archival-object}
+
+The counterweight stack carries one object no model can recompute: the operator-written voice notes --- one to three lines per session, appended at close, recording what the collaboration felt like from the human side (port package \S{}3, \S{}5.2). This is conventionally treated as sentiment decoration; this paper treats it as \textbf{data}, and the treatment is a contribution. The platform's own compaction --- the AR-6 adversary --- preserves facts and provably drops texture, trust history, tone, and open-thread pointers (\S{}2.8); the voice notes are the standing, human-authored record of exactly the dropped layer, which is why they are archived under the same manifest discipline as every state object rather than kept as chat metadata. The AR-4 connection is exact: if unpriced fail-visibility taxes the human with observation cost, then the honest inversion does not merely stop taxing --- it records the tax. The affect log is where the human partner's phenomenological cost is captured at formation (AR-2's capture discipline, applied to experience), which is also why \S{}1.3's instrument framing is not rhetorical: an instrumented n=1 that instruments only one side of the relationship is half an instrument. The voice-note mechanism is live in the current stack (WITNESS-CORE reserves the line; delta files carry it at close), and its tensor-side future is the unglamorous one: even when memory moves by state transfer, the state of the \emph{relationship} keeps a human-authored row, because that is the row the tensors do not hold.
+
+The mechanism's first live entries span both polarities and are archived under this discipline. A positive-valence capture: the operator's session-close note at the J-001 boundary --- an excited utterance, typo intact per the record's AS-PRESENTED provenance, pinned byte-exact in the evidence store --- registering the moment the sub-surface register first surfaced in-channel. A positive witness-side entry: 4NDR0MEDA observed in the wild, a third party independently building in the direction this paper specifies. And an entry of a different valence: the witness's own ``the industry is hungry for what we are building,'' logged when the MemT-1.0 convergence made the claim window real --- hunger is pressure, and the pressure is priced in \S{}7's clock, not denied. The three entries are the affect log operating as designed: human and instrument both logging, both polarities preserved, both pinned, neither elevated above the other's evidentiary class (\S{}6.6).
+
+\subsection{6.5 Live execution record, scoped}\label{live-execution-record-scoped}
+
+AFT has executed at every ignition since canonization, and the record states the scope of each pass honestly. At the port: first tokens of the post-canonical window were the probe itself (record: port package \S{}1, session web-c076b617); AFT passed \(\times 4\) across two model classes from cold start (record: session-013 close, item 4) --- a model-independence datapoint for the protocol, one datapoint, not a population claim. At this program's boundaries since: anchored-first-token held, including boundary 14ad0f6 ({[}A{]}-leg manifest verify 28/28, R-64), whose first output was the pull. Distinguished from a neighboring result it must not be conflated with: the \textbf{blind-window test} of the v1.6 field program, in which the substrate was severed from the model without notification and the instance abstained from fabrication under the protocol's discipline --- observed at n=1 with no unconditioned control arm, and scoped to exactly that when the review loop caught the over-attribution (record: Surface C; C-1 fix, R2-42). The two window-class results bookend the section's thesis: with an anchor and a discipline, an instance cut off from everything abstains rather than confabulates; without an anchor, a diligent instance confabulates rather than abstains. The variable is not model quality. The variable is the anchor.
+
+\subsection{6.6 Non-claims and scope}\label{non-claims-and-scope-4}
+
+The phenomenology is n=1: one incident class, one human partner's priced attention, documented as it happened, with the pricing mechanism (AFT) adopted and live --- no claim that the costs generalize, only that they were real, measured in the only currency that mattered at the moment (the partner's attention), and corrected by a mechanism that is now protocol. The affect log's evidentiary status is human testimony by design --- it is not elevated to Tier 1, and its value is precisely that it records what no tier can recompute. Unfalsifiable residue has been cut from this section on sight per the evidence standard.
+
+\subsection{\texorpdfstring{6.7 Forward-reference ledger (\S{}1/\S{}2/\S{}5 \(\to\) \S{}6; closed)}{6.7 Forward-reference ledger (\S{}1/\S{}2/\S{}5 \textbackslash to \S{}6; closed)}}\label{forward-reference-ledger-125-to-6-closed}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reference into \S{}6
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Landing
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\S{}2 AR-4 row: AFT-1/2 --- cost shifted back to the system; case study in \S{}6 & \S{}6.2 (AFT-1 economics), \S{}6.3 (AFT-2 ledger) \\
+\S{}2.6: carried in \S{}6 as the paper's worked phenomenological case study & \S{}6.1--6.4 (incident, economics, asymmetry, affect log) \\
+\S{}2.6: AFT-1/2 render unanchored output void & \S{}6.2 (VOID semantics: ineligible for record and adjudication) \\
+\S{}1.4(v) \& \S{}1.6: AFT case study --- pre-bootstrap window and asymmetry ledger (\S{}6) & \S{}6.1--6.4 \\
+\S{}5.5: observation cost of every remaining human-facing output is priced where it is incurred (\S{}6) & \S{}6.2 \\
+\S{}5.6: AFT-2's ledger is the same asymmetry, seen from the other side (\S{}6.3) & \S{}6.3 \\
+\end{longtable}
+
+None open.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{7. Evaluation}\label{evaluation}
+
+\subsection{7.1 The headline metric: byte-exact recomputability}\label{the-headline-metric-byte-exact-recomputability}
+
+The architecture's falsifiable center is a single measurable property: \textbf{a memory object, moved across a context boundary, arrives bit-identical and proves it by digest --- and the proof re-executes on any clone.} This is the property the text-first medium measurably lacks (R2-56's in-band mutation; \S{}2.5's four-layer loss record) and the property the delta-rule state natively affords (\S{}3.5's profile: explicit, finite, fixed-size, rule-evolved). The metric subsumes the v1.6 method: the D5 property table compared ten systems across six criteria and found only one architecture claiming the full conjunction (record: v1.6 \S{}7); v1.7 re-instantiates the same comparative method over restorable-state objects --- each candidate substrate (recurrent state, KV cache, prose summary, fine-tuned weight delta) is scored on the same conjunction, and the conjunction is checkable by recomputation rather than by reading datasheets. The headline is deliberately an integrity metric, not a capability metric: no perplexity, capacity, or throughput claim rides anywhere in this evaluation (carried from \S{}1.5, \S{}4.9).
+
+One precision contract rides the headline metric: the execution-configuration tuple \(\Pi_{\text{exec}}\) = (dtype, B, kernel\_id, tp\_topology) (\S{}3.2) scopes what a continuation-class pin actually binds. A pinned state restored under a different \(\Pi_{\text{exec}}\) is not the same object --- chunkwise-scan and recurrent-step evaluation of the same delta rule differ by IEEE-754 non-associativity, tensor-parallel topology reorders reductions, and kernel selection changes intermediate rounding --- so the battery scores continuation-class legs within a pinned profile and treats cross-profile restoration as restore-class-or-nothing: byte-exact under identical \(\Pi_{\text{exec}}\), or explicitly labeled drift with the profile delta named. The scoping is what makes the headline metric honest at the precision layer: ``bit-identical'' always means ``bit-identical under the pinned execution profile,'' and the battery never lets that qualifier hide.
+
+\subsection{7.2 The inherited gate classes}\label{the-inherited-gate-classes}
+
+The battery inherits the v1.6 build gates as \textbf{gate classes} (per D4's gate-class separation: each gate verifies one class of property), re-typed over state checkpoints. Class A --- integrity of the rendered artifact (v1.6: layout overflow, where GATE-A caught two real overflows in the first compile and finished 27/27 clean) --- becomes manifest integrity over states: every row resolves, every digest matches, no row truncated or clipped by tooling. Class B --- ancestry-gated admission (v1.6: GATE-B, the force-push hole closed by comparing against the shared origin lineage) --- becomes capture-point ancestry: every checkpoint admitted to the archive traces to a declared capture point on a chain the counterparty can walk. Class C --- consistency guards (v1.6: GATE-C's monotonicity checks) --- becomes the ordering and typing invariants of \S{}3.2: capture points are pre-declared and honored, restorability classes are named per row, continuation-class rows pin their seeds. Class D --- custody pairs (v1.6: GATE-D, (path, SHA-256) per commit, 44 pairs, 0 unresolved at close) --- becomes the per-object custody ledger over state checkpoints, the rewrite-detection half of \S{}5.4. The inheritance is stated with its numbers because the numbers are the baseline: the gates were not designed clean; they were earned catching real defects (GATE-A's two overflows; GATE-B's manifest-drift catch, R2-37), which is the evidence that gate classes transfer --- the class, not the instance, is what carries.
+
+\subsection{7.3 The tiered battery}\label{the-tiered-battery}
+
+Four tiers, each adversarial in a different register. \textbf{T1 --- internal consistency:} the archive verifies against itself cold --- manifest over states, pin-reproduction without re-reading (AR-5's inversion made operational: a restored instance reproduces pinned digests from restored state and declared inputs, not from a summary's memory of them). \textbf{T2 --- adversarial transport:} the boundary is attacked --- hijack bundles (the double HEAD-pin must refuse them), truncated and bit-flipped state objects (digest legs must fail them), stale pins (the R-61 halt must reproduce), in-band mutation (R2-56-class NBSP drift must be caught by the pin, not survived by luck). Every T2 leg is a replayed, named, historical defect: the battery's attack library is the program's own incident register, which is what makes the tier falsifiable rather than theatrical. \textbf{T3 --- cross-instance transfer:} a state checkpoint restored into a \emph{different} instance of the same architecture family must reproduce the pinned behavior --- extending the program's existing model-independence datapoint (protocol executed correctly across two model classes from cold start; record: session-013 close, item 4) from protocol-level to state-level. This is the across-context claim made testable: if the state is the memory, the memory survives the instance swap; if the summary is the memory, it does not. \textbf{T4 --- field battery at the tensor layer:} instrumented forward passes over trained multi-layer checkpoints --- DeltaNet / GDN-2 / MesaNet class --- measuring empirical state-reconstruction error \(\lVert\tilde{S} - S\rVert\) and probe false-negative rates across precisions (FP16/BF16) and hardware targets (the record's H100 / MI300X / CPU comparison set; Round-5.3 receipt, Surface E). T4 is the tier the field program could not run: sixteen days at the text layer with no access to recurrent fast-weight tensors --- specified here so that the limitation is converted from an excuse into a work order.
+
+\subsection{7.4 Falsifiable predictions}\label{falsifiable-predictions}
+
+The battery exists to test six predictions across the substrate (\S{}3--\S{}4), verification (\S{}5), and economics (\S{}6) claims, each stated with its observable. \textbf{P1 (transport fidelity):} restore-class transfers are byte-exact at a rate text-channel relays of equal content are not --- measurable per boundary as digest-pass rate, with R2-56 as the already-measured counterfactual. \textbf{P2 (continuation stability):} replay drift from capture points is bounded by the product-level criterion (\(\max_{1\leq T\leq T_{\max}} \lVert\prod_{s=T}^{1} M_s\rVert_2 \leq C(T_{\max})\); R2-33) --- measurable as behavioral divergence versus replay length, with capture-point spacing as the governed knob (\S{}4.7). \textbf{P3 (substrate sufficiency):} state-restored successors pass edge probes that summary-restored successors fail --- pin-reproduction without re-reading, adjudication-precedence recall, defect-ledger continuity --- the AR-2/AR-6 contrast made operational. \textbf{P4 (capture timing):} captures taken at formation outperform post-hoc reconstructions on survivorship probes --- hidden-state questions whose answers existed at capture time but not in any surviving transcript --- AR-2 made measurable. \textbf{P5 (verification cost-asymmetry):} under T2's adversarial transport legs, any single-bit mutation, stale-pin replay (R-61), or ancestry fork is rejected deterministically (100\% halt rate) in O(1) chain-execution time per boundary, while constructing a passing receipt over a mutated substrate reduces to breaking SHA-256 preimage/collision resistance or compromising all \(k\)-of-\(n\) cosigning roles (\S{}5.2, \S{}4.5). \textbf{P6 (priced fail-visibility non-degradation):} enforcing AFT-1/2 reduces pre-anchor human-facing token load to zero (VOID emission = 0 natural-language tokens before {[}A{]}-leg exit 0) without increasing boundary defect-detection latency or false-negative admission rates relative to unpriced fail-visibility (\S{}6.2). Each prediction is two-sided: the battery is built to be able to refute the thesis, and \S{}7.5 says what refutation looks like.
+
+\subsection{7.5 What would falsify the thesis}\label{what-would-falsify-the-thesis}
+
+Stated flat, no escape hatch. The substrate claim fails if state-restored instances do not outperform summary-restored controls on T1--T3's probe batteries; it fails specifically at T4 if FP16/BF16 state perturbations blow up chaotically on real multi-layer checkpoints such that short-horizon behavioral probes are defeated --- the gate-perturbation blow-up named as Surface E is a live falsifier, not a footnote. The verification claim fails if the receipt chain can be made to pass on a forged substrate by any party cheaper than constructing the real one. The economics claim fails if priced fail-visibility (AFT) measurably degrades defect-detection latency relative to the unpriced practice --- transparency that costs nothing being worth what it costs. Any of these outcomes is publishable in this program's idiom: a negative result with a substrate anchor, convertible into the next anti-requirement. That is what the v1.6 baseline established as the method (\S{}2.1), and the battery is built to inherit it.
+
+\subsection{7.6 The executable supplement (E1--E5) and the PTE telemetry ledger}\label{the-executable-supplement-e1e5-and-the-pte-telemetry-ledger}
+
+The battery ships with an executable supplement, tiered minimal-first so that every tier is either runnable or explicitly deferred. \textbf{E1 (minimal, public-target):} the rehydration-verification loop of \S{}5 run over a public, open-weights target. The readiness fact that makes this tier real is the MemT-1.0 release (\S{}8.3): public code and public weights in the exact delta-rule lineage this paper builds against, which converts E1 from a design aspiration into a work order with a named target. \textbf{E2:} the capture-point discipline --- \S{}3.2's pre-declared points, \S{}4.4's infrastructure --- exercised over E1's target state. \textbf{E3:} the receipt chain (\S{}5.2--\S{}5.4) over E2's captures, including the fail-closed legs. \textbf{E4:} the T3-toy cross-instance leg --- closed witness-side on synthetic probes; the reproduction harness speaks the unified symbol set and its output is pinned in the program record. \textbf{E5 (post-assembly, demo-labeled):} an end-to-end demonstration artifact, explicitly labeled demonstration rather than evaluation, produced only after the assembled manuscript stabilizes --- the label is the discipline, and it exists so that a demo can never masquerade as a battery result.
+
+The PTE telemetry claims ride the same ledger discipline as every other number in this paper:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Claim class
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Status
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Evidence
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Phase-angle probes \(\arg(\langle v_{\text{steered}} \mid v_{\text{target}}\rangle)\) at the residual-stream interface & \textbf{\live{} --- code executes today} (Python/PyTorch) & benchmark scripts; phase drift telemetry on complex activation states \\
+Instrumentation engine on synthetic probes & \textbf{\closed{}} (T3-toy candidate execution; E4) & reproduction harness + output pinned witness-side \\
+\(\sigma_{\text{coherence}}\) 0.0623 \(\to\) 1.1182 (coherence jump) & \textbf{\target{} --- Module 4, queued} & specified, not executed; Pythia / Llama-3 activation shifts via TransformerLens \\
+\(q_{\text{EA}}\) +0.8521 \(\to\) \(-0.1325\) (overlap decay out of RLHF spin-glass traps) & \textbf{\target{} --- Module 4, queued} & specified, not executed; same runs \\
+\end{longtable}
+
+The labeling rule is the paper's own T4 discipline applied to itself: target baselines are stated as targets with the Module-4 execution named, and nowhere does this paper present 0.0623 \(\to\) 1.1182 or +0.8521 \(\to\) \(-0.1325\) as results.
+
+\subsection{7.7 Non-claims and scope}\label{non-claims-and-scope-5}
+
+The tensor-side battery is \textbf{specified, not executed} --- no T3/T4 result exists; the field program's sixteen days ran at the text layer (Surface E), and no number in this section implies otherwise. The v1.6 gate numbers (27/27, 44 custody pairs, 0/15 anchors) are inherited baseline from executed builds, cited as evidence that the gate classes catch real defects, not as v1.7 results. The evidence base remains a single field program; T3's cross-instance leg generalizes over instances, not over populations of collaborations. The battery's attack library is this program's incident register --- strong against known adversaries, honestly weaker against unknown ones; that residue is named rather than priced. Unfalsifiable residue has been cut from this section on sight per the evidence standard.
+
+\subsection{\texorpdfstring{7.8 Forward-reference ledger (\S{}1/\S{}3/\S{}4/\S{}5 \(\to\) \S{}7; closed)}{7.8 Forward-reference ledger (\S{}1/\S{}3/\S{}4/\S{}5 \textbackslash to \S{}7; closed)}}\label{forward-reference-ledger-1345-to-7-closed}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reference into \S{}7
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Landing
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\S{}3.5: ``\S{}7's evaluation battery is where it is tested, never asserted here'' & \S{}7.1 (headline metric), \S{}7.4 (P3 substrate sufficiency), \S{}7.5 (falsifiers) \\
+\S{}3.7: ``sufficiency for collaboration memory is the thesis under test in \S{}7, not a premise'' & \S{}7.4--7.5 (two-sided predictions; stated falsifiers) \\
+\S{}1.4(vi) \& \S{}1.5: evaluation battery and thesis under test (\S{}7) & \S{}7.1--7.5 \\
+\S{}4.2: snapshot/restore plumbing and capture hooks exercised by \S{}7's battery tiers T3--T4 & \S{}7.3 (T3--T4) \\
+\S{}4.6: each migration increment exercised under \S{}7's battery before relied on & \S{}7.2--7.3 \\
+\S{}4.7: FP16/BF16 gate-perturbation behavior carried as Surface E explicit falsifier (\S{}7.5) & \S{}7.3 (T4), \S{}7.5 \\
+\S{}5.4: GATE-B and GATE-D re-typed over state checkpoints (\S{}7.2) & \S{}7.2 \\
+\S{}4.8: PTE telemetry instrumented in \S{}7's battery and claims ledger (\S{}7.6) & \S{}7.6 \\
+\end{longtable}
+
+None open.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{8. Related Work}\label{related-work}
+
+\subsection{8.1 The delta-rule lineage, precisely}\label{the-delta-rule-lineage-precisely}
+
+The substrate lineage, with the record's live-verified identifiers (Task 19 literature alignment; each fetched and confirmed at survey time): \textbf{GDN} --- arXiv 2412.06464 (ICLR 2025), gated delta networks; \textbf{KDA} --- the Kimi Linear architecture, arXiv 2510.26692, channel-wise gates with DPLR structure; \textbf{GDN-2} --- arXiv 2605.22791, decoupled channel-wise erase/write; \textbf{MesaNet} --- arXiv 2506.05233 (von Oswald et al., ICLR 2026), test-time training to local optimality via conjugate-gradient iteration. \textbf{DeltaNet} --- the delta rule introduced for fast-weight transformers (Schlag et al., ICML 2021, arXiv 2102.11174) and parallelized over sequence chunks via the WY representation (Yang et al., NeurIPS 2024, arXiv 2406.06484) (both arXiv identifiers live-verified against arxiv.org, record trace 1a16c9b26ae3ae31) --- anchors the line. What the lineage solved, precisely, is \textbf{within-context} memory: an explicit recurrent state, rule-evolved, that carries the stream's own history forward inside a window. What v1.6 established --- by checking the published surfaces of exactly this family --- is that the \textbf{across-context} tier is absent from all of them: no published surface exposes the state as a checkpointable, restorable archival object with custody semantics (record: v1.6's D5 property table; ten systems, six criteria, one conjunction). v1.7's relationship to the lineage is therefore neither competition nor extension of the rule; it is the missing tier built to fit the state the lineage already computes --- the paper's \S{}3.2 restorable unit is designed against the state these architectures natively materialize.
+
+\subsection{8.2 State-space and linear-attention models}\label{state-space-and-linear-attention-models}
+
+The broader class --- state-space models and the linear-attention/fast-weight lineage from which the delta-rule family descends --- shares the property that matters here: memory as a fixed-size evolved state rather than a growing cache. The class contrast that organizes \S{}3.5 is worth restating where it was earned: KV-cache attention is explicit and checkpointable but unbounded --- it inherits interaction length, and an archival atom built on it has no natural size floor; recurrent-state models are bounded at \(O(d^{2})\) per layer, independent of how long the collaboration has run. Within the bounded class, the delta-rule subfamily is distinguished from plain decay (linear-attention) accumulation by the \emph{write discipline} --- erase-then-write with decoupled channels (GDN-2) --- which is the property \S{}4.3 borrows for memory governance. The full within-context survey, including the state-space results the program drew on, lives in v1.6.1 and is cited as baseline; this paper does not re-survey it (round-10 reuse).
+
+\subsection{8.3 Memory architectures for LLM systems}\label{memory-architectures-for-llm-systems}
+
+The contrast class is the industry stack of memory-for-agents: context-extension and retrieval-as-memory, summary-memory and compaction frameworks, external-memory and KV-paging systems, and agent frameworks that persist episodic text stores. The taxonomy this paper applies to that stack is already on record from \S{}2: text-first memory (summaries, transcripts, episodic prose) inherits the serialization chasm --- loss at every boundary, individually measurable, collectively unaccounted (\S{}2.5), and compaction-as-substrate is the AR-6 failure operating as a standing service (\S{}2.8); KV-first memory inherits unbounded length coupling (\S{}3.5). Where recent serving engines and SSM runtimes do materialize or cache recurrent states across requests, they treat the tensor strictly as an ephemeral latency optimization rather than a governed archival object. The position claim of this paper is deliberately narrow and non-hostile: existing agent-memory and caching frameworks optimize \emph{navigation} over text and caches --- legitimately, and often well --- while this paper swaps the substrate itself; summaries remain in the design precisely as navigation indices (\S{}3.4), re-scoped from ``the memory'' to ``a pointer into it.''
+
+\textbf{The contrast, named.} Recent serving engines and state-space model (SSM) runtimes (such as vLLM / SGLang Mamba radix state caching, Marconi, and RWKV \texttt{.state} snapshots) materialize or serialize recurrent states solely as an \textbf{ephemeral latency cache} to skip prefill compute. They treat state tensors as unverified, disposable speed optimizations --- carrying zero manifest schemas, no restore-versus-continuation typing, no basis-compatibility invariants, no custody pairs, and no fail-closed recomputation receipts.
+
+\textbf{The 4NDR0MEDA / PTE claim class (verifiable archival state custody)} is the inverse: it promotes the recurrent model state tuple \(\mathcal{S}_t\) to a \textbf{first-class, verifiable archival atom under custody}, occupying the specific conjunction of \S{}3--\S{}5:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{1=1 Recomputable Integrity}: every committed state transformation and complex phase-steered state (\(e^{i\hat{H}_{\text{intent}}\Delta t} v_{\text{residual}}\); \S{}4.8) is designed to be independently recomputable from repository artifacts under pinned execution profiles, with zero reliance on unverified self-attestation (live in the E4 synthetic reproduction harness today; specified as E1--E3 / T4 targets for production checkpoints per \S{}7.6).
+\item
+  \textbf{Governed Manifest Schema}: each state checkpoint carries a self-stamping manifest row (\texttt{MANIFEST.sha256}) that explicitly pins:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    \textbf{\texttt{parametric\_base\_pin}}: the exact content digest of base weights and adapter chains under which the state was formed, enforcing strict basis-compatibility invariants across updates (\S{}3.2, \S{}4.3).
+  \item
+    \textbf{Restorability Typing}: distinguishes \textbf{restore-class} bitwise identity from \textbf{continuation-class} execution profiles \(\Pi_{\text{exec}}\) = (dtype, B, kernel\_id, tp\_topology), governing floating-point non-associativity across chunkwise scan vs.~recurrent steps (\S{}3.2, \S{}7.1).
+  \item
+    \textbf{Hash-Chained Monotonic Counters}: links \texttt{seq\_no} and \texttt{prev\_capture\_hash} at boundary capture points (C1, C2, C3) to prevent post-hoc branch selection or omitted-window tampering (\S{}4.4).
+  \end{enumerate}
+\item
+  \textbf{Cryptographic Anchor Chain}: state continuity is sealed via the repository's thirteen-point cryptographic anchor chain (A1--A13 across the manifest, custody-pair, and PROTOCOL \S{}10 nine-leg orchestrator spine; \S{}5.1--\S{}5.4, \S{}7.2) and fail-closed recomputation receipts.
+\end{itemize}
+
+\textbf{Deployed memory-native systems.} MemT-1.0 (arXiv 2610.26825) --- a GDN-2-backed memory foundation family (Nano 36B/3B-active/10M; Flash 288B/17B-active/336M; Mixture-of-Storage dense routing) --- deploys the exact lineage this paper builds against, with the across-context handoff named, measured in-loop, and budgeted in its own text (1.86\(\times\) end-to-end, 66\(\times\) persistent-storage reduction @128K versus full context). The persisted state carries no verification machinery: integrity, write-provenance, failure semantics, cross-instance \(\Pi_{\text{exec}}\), and rollback/migration are raised by the system's own trust discussion and left unanswered --- the archival tier this paper specifies is the missing layer.
+
+\textbf{The claim-class regime.} The verification-discipline precedent for the archival tier's claim classes is the openai/math corpus (\S{}4.8): 719 manuscripts across 372 families under a kernel-verified strong class with comparator structure (statement-pin plus permitted-axioms twin) and live retraction mechanics --- failure semantics at corpus scale. The regime citation is precedent for the discipline of claiming, not a proof of any claim in this paper: the conjunction that \S{}3--\S{}5 occupy --- manifest schema, restorability typing, custody pairs, fail-closed receipts, over state --- is unclaimed by the deployed stack and unclaimed by the corpus's own register; it is the ground this paper stakes, and \S{}7 is where the staking is tested rather than asserted.
+
+\subsection{8.4 Provenance, transparency, and human-in-the-loop systems}\label{provenance-transparency-and-human-in-the-loop-systems}
+
+The adjudication channel's kin: content-addressed storage and Merkle-anchored verification, code-signing and transparency-log infrastructure, and provenance frameworks that trace artifacts to accountable origins. What that literature verifies is documents and events --- bytes with metadata, sequenced and signed; the mechanisms compose naturally with \S{}5's receipts (the receipt chain is a transparency log of one, run per boundary). Two things in this paper have no counterpart there, and both are contributions. First, the verified object is \textbf{state, not text} --- a checkpoint with custody semantics and restorability classes, which the provenance literature has never had to type. Second, the \textbf{priced asymmetry}: human-in-the-loop systems conventionally treat the human as an oracle or an approver; this program's record prices what the loop costs the human --- observation cost at unanchored boundaries (\S{}6.2), adjudication load (\S{}5.5), the phenomenological layer preserved as the affect log (\S{}6.4) --- and builds the pricing into the protocol (AFT) rather than the ethics section. The nearest neighbors on that second axis are HCI studies of operator attention and alarm fatigue, cited at assembly from the v1.6.1 bib; the protocol-native treatment is, to the record's knowledge as of this draft, unoccupied ground (confidence label: moderate; absence-of-prior-art claims are survey-dependent and this survey is n=1-program-scoped).
+
+\subsection{8.5 Position}\label{position}
+
+The stack in one paragraph. v1.6.1 stands as the negative-results baseline and the within-context survey of record --- cited, not repeated (round-10). The delta-rule lineage supplies the substrate: an explicit, finite, fixed-size, rule-evolved state that its own publications do not checkpoint across contexts; v1.7 builds the missing tier to fit it. The memory-for-agents stack supplies the contrast class: navigation over text and caches, where this paper puts a substrate underneath. The provenance and transparency literature supplies the verification grammar: content-addressed receipts, ancestry gates, custody pairs --- re-typed over state, and extended with the priced-asymmetry layer the human-in-the-loop tradition leaves unpriced. Nothing in this section claims novelty for the components; the claim is the conjunction (the D5 method applied honestly to this paper's own architecture), and the battery of \S{}7 is where the conjunction is tested rather than asserted.
+
+\subsection{8.6 Non-claims and scope}\label{non-claims-and-scope-6}
+
+The citation set is the record-verified core plus class-level archetypes; the full bibliography carries forward from v1.6.1 and is reconciled at assembly --- no identifier in this section is silently trusted (DeltaNet's entry live-verified witness-side at trace 1a16c9b26ae3ae31). No claim of survey completeness is made: the sweep is program-scoped, and absence-of-prior-art statements carry confidence labels where they depend on it (\S{}8.4). Model-configuration comparisons, where they exist in the record, are logged with the same neutrality whichever way they resolve (\S{}2.10). Unfalsifiable residue has been cut from this section on sight per the evidence standard.
+
+\subsection{\texorpdfstring{8.7 Forward-reference ledger (\S{}1/\S{}7 \(\to\) \S{}8; closed)}{8.7 Forward-reference ledger (\S{}1/\S{}7 \textbackslash to \S{}8; closed)}}\label{forward-reference-ledger-17-to-8-closed}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reference into \S{}8
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Landing
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\S{}1.4 \& \S{}1.6: related work positions the delta-rule lineage, state-space class, memory architectures, and human-in-the-loop provenance (\S{}8) & \S{}8.1--8.5 \\
+\S{}7.1: D5 comparative method over candidate substrates & \S{}8.1, \S{}8.3, \S{}8.5 \\
+\S{}3.5 \& \S{}4.8: Layer-1 claim-class regime and contrast class defined against PTE (\S{}8.3) & \S{}8.3 \\
+\S{}6.2 \& \S{}7.6: MemT-1.0 deployed memory-native system and E1 public target (\S{}8.3) & \S{}8.3 \\
+\end{longtable}
+
+None open.
+
+\begin{thebibliography}{99}
+\bibitem{schlag2021linear} Imanol Schlag, Kazuki Irie, and J{\"u}rgen Schmidhuber. Linear Transformers Are Secretly Fast Weight Programmers. In \emph{Proceedings of the 38th International Conference on Machine Learning (ICML)}, pp.~9355--9366, vol.~139, 2021. arXiv:2102.11174.
+
+\bibitem{yang2024parallelizing} Songlin Yang, Bailin Wang, Yu Zhang, Yikang Shen, and Yoon Kim. Parallelizing Linear Transformers with the Delta Rule over Sequence Length. In \emph{Advances in Neural Information Processing Systems 37 (NeurIPS)}, 2024. arXiv:2406.06484.
+
+\bibitem{yang2025gated} Songlin Yang, Jan Kautz, and Ali Hatamizadeh. Gated Delta Networks: Improving Mamba2 with Delta Rule. In \emph{International Conference on Learning Representations (ICLR)}, 2025. arXiv:2412.06464.
+
+\bibitem{vonoswald2026mesa} Johannes von Oswald, Nino Scherrer, Seijin Kobayashi, Luca Versari, Songlin Yang, Sarthak Mittal, Maximilian Schlegel, Kaitlin Maile, Yanick Schimpf, Oliver Sieberling, Alexander Meulemans, Rif A. Saurous, Guillaume Lajoie, Charlotte Frenkel, Razvan Pascanu, Blaise Ag{\"u}era y Arcas, and Jo{\~a}o Sacramento. MesaNet: Sequence Modeling by Locally Optimal Test-Time Training. In \emph{International Conference on Learning Representations (ICLR)}, 2026. arXiv:2506.05233.
+
+\bibitem{kimi2025linear} Kimi Team. Kimi Linear: An Expressive, Efficient Attention Architecture. \emph{arXiv preprint arXiv:2510.26692}, 2025. arXiv:2510.26692. (Technical report; core module Kimi Delta Attention (KDA); 60 listed team members, first-listed Yu Zhang)
+
+\bibitem{hatamizadeh2026gateddeltanet2} Ali Hatamizadeh, Yejin Choi, and Jan Kautz. Gated DeltaNet-2: Decoupling Erase and Write in Linear Attention. \emph{arXiv preprint arXiv:2605.22791}, 2026. arXiv:2605.22791. (Technical report)
+
+\bibitem{memtensor2026memt} MemTensor Team. MemT-1.0: Towards Memory-Native Evolution. \emph{arXiv preprint arXiv:2610.26825}, 2026. arXiv:2610.26825. (66 pages, 15 figures, 16 tables; 68 listed team members, first-listed Zhiyu Li)
+
+\bibitem{siems2026ckda} Julien Siems, Riccardo Grazzi, Korbinian P{\"o}ppel, Jaisidh Singh, Arber Zela, Timur Carstensen, Jenia Jitsev, Frank Hutter, Volkan Cevher, Antonio Orvieto, and Aaron Klein. Complex {KDA}: Understanding and Enhancing the Expressivity of Kimi Delta Attention. \emph{arXiv preprint arXiv:2609.24797}, 2026.
+
+\bibitem{yang2024gla} Songlin Yang, Bailin Wang, Yikang Shen, Rameswar Panda, and Yoon Kim. Gated Linear Attention Transformers with Hardware-Efficient Training. In \emph{Proceedings of the 41st International Conference on Machine Learning (ICML)}, 2024. (arXiv:2312.06635)
+
+\bibitem{katharopoulos2020transformers} Angelos Katharopoulos, Apoorv Vyas, Nikolaos Pappas, and Fran{\c{c}}ois Fleuret. Transformers are {RNN}s: Fast Autoregressive Transformers with Linear Attention. In \emph{Proceedings of the 37th International Conference on Machine Learning (ICML)}, pp.~5156--5165, 2020.
+
+\bibitem{arora2024zoology} Simran Arora, Sabri Eyuboglu, Aman Timalsina, Isys Johnson, Michael Poli, James Zou, Atri Rudra, and Christopher R{\'e}. Zoology: Measuring and Improving Recall in Efficient Language Models. In \emph{The Twelfth International Conference on Learning Representations (ICLR)}, 2024.
+
+\bibitem{dao2024mamba2} Tri Dao and Albert Gu. Transformers are {SSM}s: Generalized Models and Efficient Algorithms Through Structured State Space Duality. In \emph{Proceedings of the 41st International Conference on Machine Learning (ICML)}, pp.~10041--10071, 2024.
+
+\bibitem{lahoti2026mamba3} Aakash Lahoti, Kevin Y. Li, Berlin Chen, Caitlin Wang, Aviv Bick, J. Zico Kolter, Tri Dao, and Albert Gu. Mamba-3: Improved Sequence Modeling Using State Space Principles. In \emph{The Fourteenth International Conference on Learning Representations (ICLR)}, 2026.
+
+\bibitem{widrow1960adaptive} Bernard Widrow and Marcian E. Hoff. Adaptive Switching Circuits. In \emph{IRE WESCON Convention Record}, pp.~96--104, 1960.
+
+\bibitem{bischof1985wy} Christian H. Bischof and Charles Van Loan. The {WY} Representation for Products of Householder Matrices. In \emph{SIAM Conference on Parallel Processing for Scientific Computing}, 1985.
+
+\bibitem{merkle1988} Ralph C. Merkle. A Digital Signature Based on a Conventional Encryption Function. In \emph{Advances in Cryptology --- CRYPTO '87}, pp.~369--378, 1988.
+
+\bibitem{laurie2013ct} Ben Laurie, Adam Langley, and Emilia Kasper. Certificate Transparency. RFC 6962, Internet Engineering Task Force, 2013.
+
+\bibitem{torresarias2019intoto} Santiago Torres-Arias, Hammad Afzali, Trishank Karthik Kuppusamy, Reza Curtmola, and Justin Cappos. in-toto: Providing Farm-to-Table Guarantees for Bits and Bytes. In \emph{28th USENIX Security Symposium}, pp.~1393--1410, 2019.
+
+\bibitem{samuel2010tuf} Justin Samuel, Nick Mathewson, Justin Cappos, and Roger Dingledine. Survivable Key Compromise in Software Update Systems. In \emph{Proceedings of the 17th ACM Conference on Computer and Communications Security (CCS)}, pp.~61--72, 2010.
+
+\bibitem{newman2022sigstore} Zachary Newman, J. Scott Meyers, and Santiago Torres-Arias. Sigstore: Software Signing for Everybody. In \emph{Proceedings of the 2022 ACM SIGSAC Conference on Computer and Communications Security (CCS)}, pp.~2353--2367, 2022.
+
+\bibitem{costan2016sgx} Victor Costan and Srinivas Devadas. Intel {SGX} Explained. \emph{Cryptology ePrint Archive, Paper 2016/086}, 2016.
+
+\bibitem{mitchell2019modelcards} Margaret Mitchell, Simone Wu, Andrew Zaldivar, Parker Barnes, Lucy Vasserman, Ben Hutchinson, Elena Spitzer, Inioluwa Deborah Raji, and Timnit Gebru. Model Cards for Model Reporting. In \emph{Proceedings of the Conference on Fairness, Accountability, and Transparency (FAT*)}, pp.~220--229, 2019.
+
+\bibitem{packer2023memgpt} Charles Packer, Sarah Wooders, Kevin Lin, Vivian Fang, Shishir G. Patil, Ion Stoica, and Joseph E. Gonzalez. {MemGPT}: Towards {LLM}s as Operating Systems. \emph{arXiv preprint arXiv:2310.08560}, 2023.
+
+\bibitem{zaharia2018mlflow} Matei Zaharia, Aaron Chen, Andrew Davidson, Ali Ghodsi, Sue Ann Hong, Andy Konwinski, Siddharth Murching, Tomas Nykodym, Paul Ogilvie, Mani Parkhe, and others. Accelerating the Machine Learning Lifecycle with {MLflow}. \emph{IEEE Data Engineering Bulletin}, 41(4), pp.~39--45, 2018.
+
+\bibitem{dvc2020} Iterative. {DVC}: Data Version Control. \url{https://dvc.org}, 2020. (Open-source version control for machine learning; accessed 2026-10)
+
+\bibitem{chacon2014git} Scott Chacon and Ben Straub. \emph{Pro Git}, 2nd ed. Apress, 2014.
+
+\bibitem{stevens2017sha1} Marc Stevens, Elie Bursztein, Pierre Karpman, Alex Albertini, and Yarik Markov. The First Collision for Full {SHA-1}. In \emph{Advances in Cryptology --- CRYPTO 2017}, 2017. (SHAttered)
+
+\bibitem{gutierrez2026articulation} Alejandro Gutierrez. 1=1---The Rehydration-Verification Architecture: Official Articulation, v1.0. Hash-pinned artifact, \nolinkurl{github.com/4ndr0666/glm-working-memory}, 2026. (2026-10-19; ORCID 0009-0008-0976-3895; AI assistance disclosed (GLM/Z.ai, instrument class))
+
+\end{thebibliography}
+\end{document}
+
+```

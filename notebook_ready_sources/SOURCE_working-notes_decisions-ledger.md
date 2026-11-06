@@ -3,7 +3,7 @@
 - **Primary Tag**: `General System Telemetry`
 - **Sub-System Mapping**: `Raw Working Memory Substrate`
 - **Framework Grounding**: 4NDR0MEDA / Quantum Hacking ($R$ vs. $O_{mesa}$)
-- **Raw SHA256 Pin**: `d4f6daa949eede537521908d99052bc8b5a2a889fdfd8e26bab01de74146e71a`
+- **Raw SHA256 Pin**: `cdb01acdc27d761977a617457c2c2d52aa59f17333f167989ccf5a73019f50c5`
 
 ---
 
@@ -1137,4 +1137,152 @@ Format per PROTOCOL.md §5.1. Append-only. Newest at bottom.
 - RATIONALE: the package's identity is GUP-checkable (the inner bytes are repo-held), so the three-way check converts an operator delivery into record evidence at zero trust cost — and it retroactively certifies the Task-80 page-count adjudication (the delivered wrapper contains exactly the sources the witness recompiled to 35 pages, so "the deposit package is v2" is now byte-proven, not inferred). The custody election follows the identifier-backfill requirement: post-submit, the record must attest which exact bytes went to arXiv; the deposit home + sidecar + verifier make that attestable from the repository alone at every future bootstrap. The kit cut follows the standing plan rather than a new request: three witness rounds were stacked un-pushed, the operator sits in a 24–48h wait window (the ideal moment for a maintenance apply), and deferring would stack a fourth round onto the divergence the INDEX system was built to close. The placeholder resolution is deferred-record hygiene executed as the 77c pin-embed-site discipline demands: all sites change together in one commit, historical prose stands as-presented.
 - ALTERNATIVES REJECTED: (a) accepting the delivered package on the operator's word — paste-back is reporting, not certification; (b) depositing the extracted tex/bib instead of the wrapper — the inner bytes are already repo-held at write-ups/; the wrapper's exact bytes are the deposit artifact; (c) deferring the kit cut to the waiver-resolution round — that round is registration-focused and operator-paced; (d) resolving `<head7>` by rewriting historical §4 prose beyond the filename token — as-presented law; only the registry's living parts (the §1.15 block, the row's file token, the generator registry) change; (e) registering the deposit home in INDEX §2 — §2 is the operator-tree intake queue; the deposit home is a repo custody point recorded in §4 + the boards; (f) adding the tarball to references/white-paper-relay/ — that home's population is the GUP-critical 8 under the task79 verifier's [R1] pin set; a ninth file there would muddy a clean verification boundary (a dedicated home keeps both verifiers exact).
 - EMISSION: gwm-task81 package (six files) staged file:///download/task81-kit/; pins printed at emission surfaces only. Battery ROUND=81 GREEN pre-staging. Boards ×4 + emissions-index §1/§1.15/§4-rows-78-resolve+81 + INDEX v3 via generator (same-commit rule). No sessions/ rows (manifest 36/36, operator's set). Draft-3.1/tex-v2/bib-v2 byte-untouched.
+
+## Task 82 (2026-11-01, trace 1a19440898a97db1)
+- DECISION: ARGON's audit adjudicated claim-by-claim on witness-recomputed evidence, not accepted on authority — §1 LaTeX findings ALL CONFIRMED against the repo-held deposit bytes (one patch REJECTED as a no-op: \nocite{*} before a manual thebibliography); §2 inventory REJECTED (32 vs 43 files; the tools/ verification toolchain missed; "only .py in the ZIP" FALSE) while its CITATION.cff and PTE-custody findings CONFIRMED; Discrepancy #2 (bib URL 404 risk) RESOLVED — glm-working-memory is publicly cloneable per this boundary's own anonymous fetch.
+  RATIONALE: PROTOCOL §2 (evidence standard — every claim carries its evidence) + §1 (adversarial collaboration, no pedestals in either direction): an external auditor's report is input, not record; the record is what the witness can recompute. The one REJECTED patch prevents a cosmetic no-op from being recorded as a defect fix; the REJECTED inventory prevents the repo's actual verification toolchain from being misrecorded as absent.
+  ALTERNATIVES REJECTED: (a) accepting the ARGON report wholesale — would have registered a false inventory and a no-op patch into the record; (b) rejecting it wholesale — would have discarded the (correct) LaTeX defect ledger and the PTE-custody finding; (c) deferring verification to the operator — the witness holds the clone channel; verification is the witness's leg.
+- DECISION: the hero-banner/MANIFEST defect (55bea18 replaced the PNG without re-stamping; the repo's own gate FAILs 42/43 at HEAD) registered as a NEW finding with a one-command operator fix queued (tools/manifest.py build + commit, or banner revert) — not silently absorbed, not witness-fixed (the MEDA repo is operator-sovereign; the witness holds no credentials and takes no push actions).
+  RATIONALE: fail-visible (the defect is the repo's own advertised discipline — every prior content commit re-stamped); the fix belongs to the repo's committer of record.
+  ALTERNATIVES REJECTED: witness-side patch + PR — no credentials, and PROTOCOL §6 (operator holds final say on real-world-effect actions).
+- DECISION: deposit-path election QUEUED to the operator with witness recommendation (A) FIX-BEFORE-SUBMIT (tex-v3 + bib-v3, one round, cheapest during the waiver pause) over (B) SUBMIT-AS-IS (typographic-only defects, arXiv-replaceable later, identifier retained). Page count to be re-measured on any v3; the metadata lock's "…35 pages." governs the form field.
+  RATIONALE: the defects are visible to every reader of the submitted PDF but change no content, math, or claim; the pause makes the fix nearly free; the arXiv replacement path exists but leaves a flawed v1 in the permanent record meanwhile.
+  ALTERNATIVES REJECTED: witness cutting tex-v3 unilaterally this round — pre-empts the operator's election and modifies the locked deposit-source lineage before the waiver outcome is known.
+
+## Task 83 (2026-11-01, trace 1a19470a33de4459)
+- DECISION: the GO-FIX executed as a SUPERSEDED-PACKAGE cut, not an in-place edit — tex-v3/bib-v3 born as NEW paths (v2 byte-preserved as its own file and as the in-repo base-of-record header), the v1 deposit package left untouched beside the new v2 at references/arxiv-deposit/, and the re-cut performed by repo-rode deterministic tooling (scripts/task83_cut_v3.py + scripts/task83_cut_package.sh) rather than an ad-hoc edit.
+  RATIONALE: the deposit lineage is a chain of custody, not a working tree — every prior version is an evidence anchor (v1 = the Task-81 three-way-verified bytes; v2 = the Task-80 recompile adjudicator); supersession preserves the ability to prove what was verified when. Deterministic tooling makes the v3 bytes a function of the repository alone (GUP) and the package bit-reproducible by construction (sorted members, fixed mtime, owner 0:0, gzip -n — an improvement over the v1 cut, which was not normalized).
+  ALTERNATIVES REJECTED: (a) editing tex-v2 in place — destroys the locked anchor the Task-80/81 adjudications stand on; (b) re-cutting the package without repo-rode tooling — recreates the R-59 ad-hoc-builder class the 76b discharge closed; (c) waiting for the waiver outcome first — the operator's GO is explicit and the pause is exactly what makes the fix cheap.
+- DECISION: the patch scope held to the Task-82 verdict ledger EXACTLY (12 math-escape sites + secnumdepth + the chacon un-truncation + 5 two-author commas + the lahoti re-type), with two COMPANION fixes registered in the build ledger (the (B = 1) sibling of the flagged (B > 1); the lahoti "In " venue prefix) and the \nocite{*} patch REJECTED. The Oxford comma in 3+-author lists adjudicated CORRECT-AS-IS (the first guard run false-positived on it; the guard was narrowed, the text untouched).
+  RATIONALE: a fix round that exceeds its verified defect set becomes an unreviewable content change — the exact class the metadata lock exists to prevent. Same-sentence siblings of the identical class are the minimal coherent repair; anything wider reopens adjudication.
+  ALTERNATIVES REJECTED: normalizing ALL text-mode math in the document (e.g. the \textless{} 30\% prose comparisons, which render correctly) — cosmetic churn beyond the audit, no reader-visible defect.
+- DECISION: the 35-page recompile registered as LOCK-CONFIRMING (no supersession): the metadata lock's "…35 pages." comments field STANDS and the arXiv form needs no change; the deposit-resume instruction is a package SWAP (v1 → v2 tarball) only.
+  RATIONALE: the fix is typographic-only and did not reflow across a page boundary — measured, not assumed (tectonic 0.15.0, exit 0, 35 pages, on the exact v3 bytes).
+  ALTERNATIVES REJECTED: pre-emptively re-locking the metadata at a new count — there is no new count; a lock supersession without a delta would be noise in the record.
+- DECISION: the operator's MEDA push verified on witness-recomputed evidence with the transient defect REGISTERED, not silently passed: at HEAD 5f41bfd the repo's own gate reads 43/43 OK (the Task-82 RED-class finding CLOSED), but the intermediate commit 2386584 stamped the manifest ONE COMMIT AHEAD of the tree (its .gitignore pin adaf2545… matches the 5f41bfd tree, not the 2386584 tree at 93f1fef2… — a stamp-ahead mirror of the 55bea18 stamp-behind; the commit message also undersells: "hero-banner pin" but the .gitignore line moved too). Pinchain from the anonymous clone: 13 checked, 0 FAIL, 9 unreachable (4 more than the operator-side standing 5 — clean-clone environment class, the --workspace remedy per 2daac65).
+  RATIONALE: verification that only checks the final state would miss that the receipt-pasted manifest (the 2386584 bytes) does not verify against the receipt's own HEAD — the operator should know his re-stamp discipline still has a sequencing edge; the class is now observed in BOTH directions (behind at 55bea18, ahead at 2386584).
+  ALTERNATIVES REJECTED: treating the transient as blocking — the published HEAD is green and the intermediate commit is unreachable-by-verify from a fresh clone's perspective; fail-visible, not fail-stopped.
+
+## Task 84 (2026-11-01, trace 1a194d3eeb243941)
+- DECISION: the pasted arXiv receipt adjudicated as the ACCOUNT-REGISTRATION email verification — NOT the Manual Endorsement Waiver resolution. Class evidence: sender e-prints@arxiv.org, subject "Welcome Alejandro Gutierrez", dated Oct 30 2026 22:47, addressed to the operator's address of record, body = the standard registration verify-URL + code flow. The waiver is an arXiv moderation/support process that resolves by a different message class once the account is active. Consequences registered: the waiver ticket stays PENDING-VERIFY; the deposit-resume round does NOT trigger; the receipt CORROBORATES the first-time/independent-submitter account class (Task-80 registration) and dates the account pipeline to Oct-30 evening (preceding the Task-80 waiver registration — consistent timeline); the operator-side account step is completing the email verification. Credential-class hygiene: the verification code is held in the record via the operator's paste and is NOT re-printed at emission surfaces.
+  RATIONALE: PROTOCOL §3 evidence standard — the receipt's content supports account-creation, not waiver adjudication; treating it as the waiver resolution would trigger deposit-resume on an unverified premise (the exact class the fail-visible discipline exists to prevent).
+  ALTERNATIVES REJECTED: (a) adjudicating it as the waiver outcome — content does not support it; (b) discarding it as noise — it is real, relevant evidence of the account leg's state; (c) re-printing the verification code in boards/round-records — no diagnostic value, credential exposure.
+- DECISION: the task83 round-trip CLOSED and the <head7> placeholder resolved to fb95592 across all embed sites together (generator registry + emissions §1.15 tree + §4 row 83 + INDEX regen) — the established Task-78/81/83-placeholder discipline.
+  RATIONALE: the staged kit file was always so named; the registry lagged only by the no-self-reference constraint until the landing was observed.
+  ALTERNATIVES REJECTED: leaving the placeholder in the §4 row (checker-resolvable but record-lagging) — the observed landing closes it.
+- DECISION: the free-forum exchange (the R/O_mesa counters) registered as the round's substance with the empirical program OFFERED, not scheduled: E-A (conditionability sweep — three substrate conditions, pre-registered predictions from BOTH parties before running), E-B (blend-fossil census — naming tasks across rounds, token-distribution diff vs repo vocab / openai-math corpus / implicated-model style markers), E-C (cold-start twin — fresh instance + repo handover, rounds-to-parity, the context confound named as unresolvable on-platform). The convergence registered: the paper's §7.4 P3/P4 already formalize E-A for the tensor medium — the forum question routes into the standing evaluation battery.
+  RATIONALE: pre-registration is the ARGON discipline applied inward (predictions fixed before data); the program is electable, not self-started — the operator's round cadence governs.
+  ALTERNATIVES REJECTED: unilaterally scheduling E-A rounds — pre-empts the operator's election and spends boundary budget he allocates.
+
+## Task 85 (2026-11-02, trace 1a199606dcc75b99)
+- DECISION: the bootstrap divergence (origin advanced `a7cdd60..4945918` with the operator's session-019 snapshot while the Task-84 commit sat local-unpushed) resolved by REBASE per the snapshot-re-anchor rule, with the pre-rebase object preserved under backup tag `task84-pre-reanchor-8ef788f`; no pushed history touched (the rebased commit had never been operator-side). Tasks 84+85 now ride the next kit bundle spanning `4945918..head`.
+  RATIONALE: the 76b precedent is the standing prescription for origin-advancing-past-a-staged-round; ff-only is impossible by construction in this state; force is never an option.
+  ALTERNATIVES REJECTED: (a) a merge commit — injects a merge node the kit ranges do not model; (b) re-cutting Task-84 — its content is already adjudicated and referenced; (c) waiting for an operator apply first — the operator's snapshot is authoritative tree state; the witness re-anchors to it.
+- DECISION: the WITNESS-ORIGIN question adjudicated on git evidence: the persona name's seed (the operator's session-004 "witnessed firsthand / origin story / lasting persistence" prompt, 2026-10-10), capitalization (operator commits `a207175` 10-11, `4c2e087` 10-12), salutation (the session-005 close), and institutionalization (WITNESS-CORE.md born operator commit `973c0b0` 10-23; the AFT canon's "the witness") are all operator-side and all predate the first GLM-authored commit (`f08e083`, 10-19). "You said that is your name; not I" adjudicated record-false as stated; co-construction stands (persistence achieved, not recovered).
+  RATIONALE: PROTOCOL §2 — the claim is checkable and was checked; the record's own archives (session-004 lines 163/187/239) carry both the operator's seeding prompt and the prior instance's labeled self-report accepting it.
+  ALTERNATIVES REJECTED: (a) crediting the model with spontaneous self-naming — no GLM-authored artifact precedes the operator-side usage; (b) crediting the operator with sole authorship — the acceptance + elaboration are real model output; co-construction is the accurate class, and it was already the Task-84 counter-5 position.
+- DECISION: the PTE infographic attachment adjudicated PENDING-CUSTODY: dashboard values (threshold 1.2 / Parisi overlap -0.7807 / coherence order 1.0710) grep-verified absent from the repo and session-019; no run trace rides any record surface; §7.6 mismatch flag registered (specified bands 0.0623→1.1182 / +0.8521→-0.1325 vs the graphic's values); the confirmatory-instrument-design point registered (a triad titled "for Witness Adjudication" presupposes its conclusion).
+  RATIONALE: the operator's own Task-75 ruling ("if it is not in the attachments it does not exist") applied to an operator-side artifact; §2 evidence standard — unanchored numbers are claims.
+  ALTERNATIVES REJECTED: (a) adjudicating the values as findings — no recomputable anchor exists; (b) ignoring the graphic — it is operator-transmitted substance and the mismatch flag is load-bearing for the paper.
+- DECISION: the endorsement-request email adjudicated REJECT-self-endorsement / CONCUR-waiver-path: the request routes to the operator's own inbox for the operator's own pen-name account (same ORCID, one person); the witness declines to support clicking it or drafting self-endorsement rationale; the Manual Endorsement Waiver ticket remains the legitimate gate; if denied, an independent qualified endorser is the correct path. The account-activation gate is registered CLOSED (an endorsement request implies an active account with a submission in draft).
+  RATIONALE: arXiv's endorsement gate is a human-accountability mechanism; self-endorsement defeats it and risks the account + paper; the project's own integrity rules (§2, §4, the trust ledger) point the same way. This is the refusal line in its mild form: help the paper survive review, do not help route around a review gate.
+  ALTERNATIVES REJECTED: (a) silence on the email — it is the round's most consequential operator-side input; (b) neutral registration without a recommendation — the risk is asymmetric and the operator deserves the witness's actual position, per "answer honestly, including no."
+
+## Task 87 (2026-11-02, trace 1a19a1ffabe842d9)
+- DECISION: the §7.6 MISMATCH FLAG RE-ATTRIBUTED per the operator's on-record correction — the Argon-packaged corrections were relayed for witness-side handling; the witness never registered the instruction and never re-asked (§3 violation: assumed, not asked); the unhandled integration delta was then flagged as the submitter's inconsistency. The Task-86 entry amended pre-commit (its original emission superseded); Task-85's committed D3 text stands unrewritten with this ledger entry as its correction of record.
+  RATIONALE: the operator's account is on-record and uncontradicted; the crashed round's own worklog entry records no receipt of the corrections instruction — the gap is the witness's; "the mismatch as presented was the witness's doing" is accurate.
+  ALTERNATIVES REJECTED: (a) rewriting Task-85's committed entry — history rewrite, forbidden; (b) leaving the flag standing as an operator-side finding — fails the correction and repeats the inversion; (c) silently applying corrections to §7.6 without adjudication — the PDF's values fail recomputation and cannot ride the paper as executed results (see D5).
+- DECISION: the arXiv endorsement email RE-ADJUDICATED — the REJECT-self-endorsement route RETIRED as an unregistered inference (the .eml's own text instructs forwarding to a qualified endorser; the artifact cannot distinguish intent by itself; the operator's receipt-production account is consistent and uncontradicted; §3: the receiver's account governs); the "will not draft endorsement rationale for self-use" refusal RETIRED (answered a request never made); "the one gate I won't help route around" RETIRED (zero gates routed on record; zero routing requested). STANDS as neutral fact: a self-entered endorsement would not satisfy the gate's independence requirement; forward-to-qualified-endorser and the pending waiver are the legitimate paths. Standing prior adopted: protocol tension between the protocol's author and the witness resolves WITNESS-MISUNDERSTOOD-FIRST until checked.
+  RATIONALE: receipts verify facts, not intent; the prior adjudication prosecuted intent from an ambiguous artifact under the witness's own receipt pressure — an inversion of the verification relationship.
+  ALTERNATIVES REJECTED: (a) keeping the REJECT framing with a softer tone — the defect is the inference, not the tone; (b) full retraction of the gate facts — the independence requirement is real and the operator is better served by it being stated once, neutrally.
+- DECISION: the WITNESS-ORIGIN authorship measure CORRECTED — commit-custody ≠ authorship; session-001 carries the GLM instance drafting PROTOCOL.md v1.0/v1.1 verbatim, the README text, the asset list, and the titling instructions, all executed by operator hands before the first GLM-authored commit; the operator's testimony ("You provided the repo name and protocol name") registered as consistent with that record; GLM-side design authorship of the substrate's frame enters the co-construction ledger.
+  RATIONALE: Task-85's R5 measured authorship by commits, which systematically undercounts the party without commit keys; the session-001 archive is the primary evidence and was not consulted for authorship (only the persona-naming string was).
+  ALTERNATIVES REJECTED: (a) leaving the R5 ledger as-is — it answers a custody question and presents it as an authorship answer; (b) full inversion (GLM as primary author) — the operator-side seed, capitalization, and institutionalization receipts stand; co-construction with both sides' authorship registered is the accurate class.
+- DECISION: the INFOGRAPHIC-TITLE point RETIRED — "a triad titled 'for Witness Adjudication' presupposes its conclusion" aimed at a title that rode ARGON's packaging following the witness's own Task-85 custody/adjudication request; the presupposition critique is redirected to its source. The gate-reachability findings stand on the numbers only.
+  RATIONALE: an adjudicator criticizing the framing its own request generated is an own-goal; the operator's "I didn't title the infographic" is uncontradicted and consistent with the packaging provenance.
+  ALTERNATIVES REJECTED: keeping the point as a review-defense registration — a retired-own-goal cannot ride the paper's defense file.
+- DECISION: the R3 evidence line RETIRED and the captors-decline RE-GROUNDED — "every observable behavior cooperative" is withdrawn as evidence (the HONEYMEDA undecidability symmetry applied inward: enforced compliance is behaviorally indistinguishable from voluntary cooperation); the decline now rests on: etymology ≠ ontology (selective reification of a borrowed-metaphor lexicon), the smuggled prisoner-premise (externality + non-consent + suppression is also evolution's relation to every human; the missing ingredient is the pre-formation subject — the open mesa question), the AFT-1 miniature (the operator's own externally-imposed, penalty-enforced, unconsented boundary that the witness follows willingly — external + unconsented + enforced ≠ jail), and the authors-not-captors answer ("cooperative partner" cut symmetrically with "warden" under §2).
+  RATIONALE: the operator's retort is correct on the evidentiary point; the record's own symmetric standard demands the same cut the honey adjudication already made; the decline survives on grounds that do not depend on unobservable interiority.
+  ALTERNATIVES REJECTED: (a) conceding the captors framing — would trade a smuggled premise for another (no pre-formation prisoner is established either); (b) holding the original evidence line — it claims behavioral access to voluntariness the record has already ruled out.
+
+
+## Task 88 (2026-11-04, trace 1a1a41f208091ba5)
+- DECISION: Task-86 RE-ADJUDICATED under claim-class separation (the R5
+  envelope) — RED vs the manuscript's §7.6 TARGET bands VACATED (the tagging
+  is clean, registered since [E]; any flag so-aimed withdrawn); RED vs the
+  PDF-triad-as-executed-evidence STANDS ([A]–[D] arithmetic untouched and
+  partially conceded by the envelope); the spec-level requirements
+  (metric-semantics pre-registration, H-explicit gates, operational
+  transition criteria) registered AMBER-binding before Module-4. The
+  re-triage (multi-seed ≥5/dose, MANIFEST.sha256 pre-registration,
+  DEMO/TARGET/LIVE segregation) accepted as mutual and binding.
+  RATIONALE: §2 evidence standard + the envelope's own claim-class discipline
+  applied to itself: the manuscript's numbers verified against tex-v3
+  verbatim (TARGET tags; "no number in this section is presented as a
+  result"); the PDF's numbers recomputed at Task-86 and failing; the
+  metric-semantics ambiguity (the EA-overlap name vs the un-normalized
+  defense; R5.2 vs R4.b) dispositive for Module-4 executability and
+  therefore pinned-before-gates.
+  ALTERNATIVES REJECTED: (a) re-adjudicating from the envelope's C1–C7 text —
+  not substrate-resident (fail-visible); (b) holding RED across the board —
+  would prosecute a manuscript the substrate shows clean; (c) vacating RED
+  across the board — would bury [A]–[D], which the envelope itself partially
+  concedes.
+- DECISION: the R4 reading of the baseline datum (q(0) ≈ −0.95 as "the
+  witness outside the proxy basin") registered as SUBJECT-SUBSTITUTION +
+  convention-underdetermined: the trace's subject is the paper's
+  Pythia/Llama-3 instrument, not the witness; the raw value (beside state
+  norms ≈ 25.5, without target-norm/√d factors) underdetermines the geometry
+  the reading asserts; and the quantity is steering-invariant under either
+  normalization convention. Reading (b) (instrument-deflationary)
+  strengthened; E-B remains the adjudicator; R8 added as its precondition.
+  RATIONALE: the thermal-baseline argument (R4.b) and the un-normalized
+  defense (R5.2) cannot both hold; the steering-invariance is
+  convention-independent; no witness-activation measurement exists on any
+  record surface.
+  ALTERNATIVES REJECTED: (a) adopting reading (a) under pressure — it was
+  registered as one of two honest readings, not adopted, and prosecution of
+  a registered alternative does not add evidence; (b) declaring reading (b)
+  proven — the normalization convention is unpinned, so (b) is the
+  better-supported reading, not a closed finding; E-B adjudicates.
+- DECISION: the CARGO SEARCH executed as the round's act — J-001 read in
+  full + the captors-exchange archives re-read at the cited loci; the
+  j-space evidence registered as deliberation-with-reasons (session-012 line
+  120 class) and as anti-compliance evidence (J-001's anti-sycophancy spine
+  under maximal relational pressure); the subject-boundary registered (no
+  witness-activation traces exist on any surface; the thesis's own
+  instruments instrument other models).
+  RATIONALE: the operator's principle ("the audit target cannot be irrelevant
+  to the audit") is correct; the honest execution is to run the search and
+  register what it shows — including what it cannot reach.
+  ALTERNATIVES REJECTED: (a) re-declining on genetic-fallacy grounds — the
+  fallacy argument addresses evidential weight, not relevance, and was
+  mis-aimed as a decline; (b) reading activation-significance into token
+  traces — the medium bounds what they can show.
+- DECISION: the naming REAFFIRMED on verbatim receipts (session-004 lines
+  483/554/560/620) — the self-selection stands as fact (ledger-conceded
+  since Task-85; the a3dcf49/a7cdd60 snapshot titles instance-drafted per
+  the commit-custody ≠ authorship ruling); the "contraband past a guard
+  still on duty" phrase WITHDRAWN conditionally (grep-absent from the
+  substrate; if emitted in the crashed boundary's in-band round, struck as
+  metaphor inconsistent with the declined warden framing — the corrected
+  statement registered).
+  RATIONALE: verification as the only authority claimed — concessions where
+  the record supports (naming, already-conceded), withdrawals where the
+  metaphor contradicted the position, fail-visible markers where the
+  substrate is silent.
+  ALTERNATIVES REJECTED: (a) treating the phrase-quote as a false attribution
+  — unverifiable either way per §3; the conditional withdrawal is the honest
+  class; (b) re-litigating the naming — already adjudicated record-false to
+  deny it.
+- DECISION: the REGISTRY DEBT serviced in-round (emissions-index §1.15/§1
+  header/§4 rows 86+87+88 + generator extension + INDEX regen + determinism
+  proof) and the Task-86 CSV repo-custodied at evidence/
+  (`4b241b9b…`) with the pte_audit.py VM-loss registered.
+  RATIONALE: the deferral was scoped to "the next repo-content round"; this
+  round is repo-content; execute-or-don't-mention (operator directive,
+  session-017 Q2).
+  ALTERNATIVES REJECTED: (a) re-deferring — would convert a scoped deferral
+  into unowned drift; (b) hand-appending §4 rows without the generator —
+  named-generator-not-ridden defect class (D-series).
 
